@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'clash';
+  src: url('./fonts/ClashDisplay-Semibold.woff2');
+}
+
+@font-face {
+  font-family: 'archivo';
+  src: url('./fonts/Archivo-Regular.woff2');
+}
+
+/* Dashboard */
+#titleOneDate {
+  font-family: 'clash', sans-serif;
+}
+
+.buttonData {
+  @apply bg-background-dark text-on-surface-dark
+}
