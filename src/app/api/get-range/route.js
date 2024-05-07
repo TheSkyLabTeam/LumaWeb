@@ -11,6 +11,7 @@ export async function GET(request) {
     filename: 'src//app//api//DATA.sqlite',
     driver: sqlite3.Database
   });
+  
 
   let data171;
   let data195;
