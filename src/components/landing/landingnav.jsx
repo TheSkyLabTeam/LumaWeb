@@ -16,21 +16,22 @@ export const LandingNav = () => {
       gsap.to(`#navLink-${index}`, {
         y: 0,
         duration: 0.6 + index * 0.3,
-        ease: "back.inOut(1.7)",
+        ease: "back.inOut(1.7)"
       });
     });
 
-    tl.to("#lumaBrandContainer", {
-      x: 0,
-      duration: 0.6,
-      ease: "back.inOut(1.7)",
-    })
+    tl
+      .to("#lumaBrandContainer", {
+        x: 0,
+        duration: 0.6,
+        ease: "back.inOut(1.7)"
+      })
       .to(
         "#getStartedContainer",
         {
           x: 0,
           duration: 0.6,
-          ease: "back.inOut(1.7)",
+          ease: "back.inOut(1.7)"
         },
         "-=0.4" // Animación simultánea con un pequeño solapamiento
       );
@@ -57,8 +58,8 @@ export const LandingNav = () => {
         {[
           ["HOW IT WORKS", "/"],
           ["TEAM", "/"],
-          ["CONTACT", "/"],
-        ].map(([text, href], index) => (
+          ["CONTACT", "/"]
+        ].map(([text, href], index) =>
           <Link
             className="-translate-y-32"
             id={`navLink-${index}`}
@@ -67,12 +68,14 @@ export const LandingNav = () => {
           >
             {text}
           </Link>
-        ))}
+        )}
       </div>
       <div id="getStartedContainer" className="translate-x-36">
-        <Button className="border rounded-none">
-          <p className="font-archivo font-semibold">Get started</p>
-        </Button>
+        <Link href={"/dashboard"}>
+          <Button className="border rounded-none bg-black">
+            <p className="font-archivo font-semibold">Get started</p>
+          </Button>
+        </Link>
       </div>
     </nav>
   );
