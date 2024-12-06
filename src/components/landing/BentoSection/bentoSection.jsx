@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import { FloatingImagesContainer } from "./floatingImagesContainer";
 gsap.registerPlugin(ScrollTrigger);
 
 export const BentoSection = () => {
@@ -79,11 +80,13 @@ export const BentoSection = () => {
   return (
     <div className="featuresSection w-screen h-screen flex flex-col justify-center items-center py-8 px-28 gap-6">
       <div className="relative w-full h-[45%] flex flex-row gap-6">
-        <div className="relative flex w-[70%] h-full overflow-hidden">
+        <div className="relative flex w-[70%] h-full  rounded-br-[3rem] overflow-hidden">
           <div
             id="visualizationContainer"
             className="absolute w-full h-full bg-[#161211] border border-[#5D3F3A] rounded-br-[3rem] transform -translate-y-96"
-          />
+          >
+            <FloatingImagesContainer />
+          </div>
         </div>
         <div className="relative flex w-[30%] h-full overflow-hidden">
           <div

@@ -1,12 +1,9 @@
-import { BentoSection } from "@/components/landing/BentoSection/bentoSection";
-import HeroSection from "@/components/landing/heroSection";
+
+import {Landing} from "@/components/landing/landing";
 
 
 export default function Index() {
   return (
-    <main className="w-screen flex flex-col bg-[#0D0D0D]">
-     <HeroSection />
-     <BentoSection />
-    </main>
+    <Landing />
   );
 }
