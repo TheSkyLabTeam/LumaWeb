@@ -15,6 +15,27 @@ button{
   @apply h-10 rounded-full px-6 w-fit
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #161211;
+  
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #534341;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #534341;
+}
+
 
 /* Dashboard */
 #dashboard::-webkit-scrollbar {
