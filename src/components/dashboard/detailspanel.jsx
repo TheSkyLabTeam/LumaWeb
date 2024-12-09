@@ -137,7 +137,7 @@ export function DetailsPanel(props) {
           <div className="w-full">
             <Tabs defaultValue="entropy" className="w-full mt-4">
               <div className="flex relative justify-center items-center">
-                <div className="w-full overflow-x-scroll" ref={tabList}>
+                <div className="scrollable w-full overflow-x-scroll" ref={tabList}>
                   <TabsList
                     className="font-clash font-semibold"
                   >
