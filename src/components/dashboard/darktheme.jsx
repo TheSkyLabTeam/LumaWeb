@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons'
 
 export default function DarkTheme() {
-    const [darkTheme, setDarkTheme] = useState(false)
+    const [darkTheme, setDarkTheme] = useState(true)
     
     useEffect(() => {
         const theme = localStorage.getItem("theme")

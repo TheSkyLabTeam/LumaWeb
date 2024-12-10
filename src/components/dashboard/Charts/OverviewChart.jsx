@@ -10,10 +10,12 @@ import {
   ResponsiveContainer,
   Cell
 } from "recharts";
+import { OverTooltip } from "./OverTooltip";
 
 export default function OverChart(props) {
   const t = useTranslations("ChartsParameters");
   let statistics = props.statistics;
+  console.log(statistics)
 
   const colors = [
     "#3b82f6",
@@ -76,17 +78,35 @@ export default function OverChart(props) {
         <h2 className="font-clash font-semibold text-xl text-on-background dark:text-on-background-dark">
           {t(`${props.parameter}Title`)}
         </h2>
-        <p className="font-archivo mt-3 text-base text-on-background/80 dark:text-on-background-dark overflow-hidden">
+        <p className="font-archivo mt-3 text-base text-on-background/70 dark:text-on-background-dark/70 overflow-hidden">
           {t(`${props.parameter}Description`)}
         </p>
       </div>
 
       {/* Chart */}
-      <div className="flex flex-col md:flex-col xl:flex-row pt-6 gap-2 w-full h-fit">
+      <div className="flex flex-col md:flex-col mt-6 gap-2 w-full h-fit">
+        <div className="flex flex-row gap-8 justify-end bg-surface dark:bg-surface-container-high-dark">
+          <div id="maxContainer">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month maximum</p>
+            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.max.toFixed(2)}</p>
+          </div>
+          <div id="minContainer">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month minimum</p>
+            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.min.toFixed(2)}</p>
+          </div>
+          <div id="averageContiner">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month average</p>
+            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.avg.toFixed(2)}</p>
+          </div>
+          <div id="stdDevContainer">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month standard deviation</p>
+            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.stdDev.toFixed(2)}</p>
+          </div>
+        </div>
         <div
           id={"barChartContainer"}
           className={
-            "h-[40svh] md:h-[40svh] lg:min-h-[40svh] xl:w-2/3 xl:h-96 xl:min-h-96"
+            "h-[40svh] md:h-[40svh] lg:min-h-[40svh] xl:w-full xl:h-96 xl:min-h-96"
           }
         >
           <ResponsiveContainer width="100%" height="100%">
@@ -99,19 +119,19 @@ export default function OverChart(props) {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              <Tooltip content={<OverTooltip active={false} payload={[]} label={""}/>}/>
               <Bar dataKey="entropy" fill="#191c1e">
                 {data.map((entry, index) =>
                   <Cell
                     key={`cell-${index}`}
                     fill={colors[index % colors.length]}
+                    radius={[10, 10, 0, 0]}
                   />
                 )}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <OneAnalytics statistics={statistics} />
       </div>
     </div>
   );

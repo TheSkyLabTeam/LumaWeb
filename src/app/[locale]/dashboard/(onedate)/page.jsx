@@ -142,7 +142,7 @@ const Page = () => {
           />
           <h2
             id="subtitleOneDate"
-            className="font-archivo text-base font-normal text-on-background dark:text-on-background-dark"
+            className="font-archivo text-base font-normal text-on-background dark:text-on-background-dark/60"
           />
         </div>
         <div id="dateContainer" className="flex mt-2 md:mt-0">
@@ -153,7 +153,7 @@ const Page = () => {
       {/* Sun images */}
       <div
         id="sunImagesContainer"
-        className="scrollable w-full h-fit flex gap-4 xl:gap-2 justify-between pt-4 border-t border-outline overflow-x-scroll overflow-y-hidden z-20"
+        className="scrollable w-full h-fit flex gap-4 xl:gap-2 justify-between pt-4 overflow-x-auto overflow-y-hidden z-20"
       >
         <div id="eitContainer" className="flex gap-4 xl:gap-2">
           {["171", "195", "284", "304"].map(table =>
