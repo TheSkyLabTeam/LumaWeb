@@ -3,12 +3,10 @@ import OneAnalytics from "../oneanalytics";
 import {
   BarChart,
   Bar,
-  Rectangle,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Cell
 } from "recharts";

@@ -63,7 +63,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
   return (
     <div className="w-full h-[70vh] md:h-[50vh] bg-white rounded-lg shadow-md">
       <div className="p-4 border-b">
-        <h2 className="text-xl font-bold">{`${selectedTable} - ${parameter}`}</h2>
+        <h2 className="text-xl font-bold font-clash">{`${selectedTable} - ${parameter}`}</h2>
         <p className="text-sm text-gray-500">Data visualization over time</p>
       </div>
       <div className="h-[calc(100%-5rem)] p-4">

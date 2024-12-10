@@ -129,7 +129,7 @@ const Page = () => {
       {/* Line chart selector and Line chart here */}
       <Tabs defaultValue="entropy" className="w-full mt-4">
         <div className="flex relative justify-center items-center">
-          <div className="w-full overflow-x-scroll" ref={tabList}>
+          <div className="w-full scrollable overflow-x-scroll" ref={tabList}>
             <TabsList className='font-clash font-semibold'>
               <TabsTrigger value="entropy">
                 {tOverview("entropyTitle")}
