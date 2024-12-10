@@ -129,7 +129,7 @@ const Page = () => {
 
   // Rendering components
   return (
-    <div className="w-full h-fit flex flex-col md:p-2">
+    <div className="w-full h-fit flex flex-col md:p-2 mt-3">
       {/* Header */}
       <div
         id="nav"
