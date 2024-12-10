@@ -85,24 +85,7 @@ export default function OverChart(props) {
 
       {/* Chart */}
       <div className="flex flex-col md:flex-col mt-6 gap-2 w-full h-fit">
-        <div className="flex flex-row gap-8 justify-end bg-surface dark:bg-surface-container-high-dark">
-          <div id="maxContainer">
-            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month maximum</p>
-            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.max.toFixed(2)}</p>
-          </div>
-          <div id="minContainer">
-            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month minimum</p>
-            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.min.toFixed(2)}</p>
-          </div>
-          <div id="averageContiner">
-            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month average</p>
-            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.avg.toFixed(2)}</p>
-          </div>
-          <div id="stdDevContainer">
-            <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">Month standard deviation</p>
-            <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">{statistics.stdDev.toFixed(2)}</p>
-          </div>
-        </div>
+        <OneAnalytics statistics={statistics} />
         <div
           id={"barChartContainer"}
           className={
