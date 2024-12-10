@@ -46,14 +46,35 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
 
   const fixedData = dataFixer(rawData, selectedTable, parameter);
 
-  const average = fixedData.reduce((acc, val) => acc + val[parameter], 0) / fixedData.length;
+  const statistics = {
+    avg:
+      fixedData.reduce((acc, val) => acc + val[parameter], 0) /
+      fixedData.length,
+    max: Math.max(...fixedData.map(item => item[parameter])),
+    min: Math.min(...fixedData.map(item => item[parameter])),
+    stdDev: Math.sqrt(
+      fixedData.reduce(
+        (acc, val) =>
+          acc +
+          Math.pow(
+            val[parameter] -
+              fixedData.reduce((a, v) => a + v[parameter], 0) /
+                fixedData.length,
+            2
+          ),
+        0
+      ) / fixedData.length
+    )
+  };
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip bg-white p-2 border border-gray-300 rounded shadow">
-          <p className="label">{`${moment(label).format('MMM D, YYYY')}`}</p>
-          <p className="value">{`${parameter}: ${payload[0].value.toFixed(2)}`}</p>
+          <p className="label">{`${moment(label).format("MMM D, YYYY")}`}</p>
+          <p className="value">{`${parameter}: ${payload[0].value.toFixed(
+            2
+          )}`}</p>
         </div>
       );
     }
@@ -61,12 +82,52 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
   };
 
   return (
-    <div className="w-full h-[70vh] md:h-[50vh] bg-white rounded-lg shadow-md">
-      <div className="p-4 border-b">
-        <h2 className="text-xl font-bold font-clash">{`${selectedTable} - ${parameter}`}</h2>
-        <p className="text-sm text-gray-500">Data visualization over time</p>
+    <div className="w-full h-[60vh] mt-3 bg-background">
+      <div className="w-full flex flex-row items-center justify-between border-b">
+        <div>
+          <h2 className="text-xl font-semibold font-clash">{`${selectedTable} - ${parameter.replace('_', ' ')}`}</h2>
+          <p className="text-sm text-gray-500">Data visualization over time</p>
+        </div>
+        <div>
+          {/* Statistics */}
+          <div className="flex flex-row gap-8 justify-end bg-surface dark:bg-surface-container-high-dark mb-4">
+            <div id="maxContainer">
+              <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">
+                Month maximum
+              </p>
+              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+                {statistics.max.toFixed(2)}
+              </p>
+            </div>
+            <div id="minContainer">
+              <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">
+                Month minimum
+              </p>
+              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+                {statistics.min.toFixed(2)}
+              </p>
+            </div>
+            <div id="averageContainer">
+              <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">
+                Month average
+              </p>
+              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+                {statistics.avg.toFixed(2)}
+              </p>
+            </div>
+            <div id="stdDevContainer">
+              <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-sm">
+                Month standard deviation
+              </p>
+              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+                {statistics.stdDev.toFixed(2)}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="h-[calc(100%-5rem)] p-4">
+        {/* Gráfico */}
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={fixedData}>
             <defs>
@@ -82,8 +143,8 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
-              tickFormatter={(value) => {
-                return moment(value).format('MMM D');
+              tickFormatter={value => {
+                return moment(value).format("MMM D");
               }}
             />
             <YAxis
@@ -92,7 +153,11 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
               tickFormatter={value => value.toFixed(2)}
             />
             <Tooltip content={<CustomTooltip />} />
-            <ReferenceLine y={average} stroke="#ba1a1a" label={{ value: "Average", position: "insideTopRight" }} />
+            <ReferenceLine
+              y={statistics.avg}
+              stroke="#ba1a1a"
+              label={{ value: "Average", position: "insideTopRight" }}
+            />
             <Area
               connectNulls
               type="monotone"
@@ -108,4 +173,3 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
     </div>
   );
 };
-

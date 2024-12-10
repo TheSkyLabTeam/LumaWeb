@@ -141,36 +141,20 @@ export function DetailsPanel(props) {
                   <TabsList
                     className="font-clash font-semibold"
                   >
-                    <TabsTrigger value="entropy">
-                      {tOverview("entropyTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="mean_intensity">
-                      {tOverview("meanIntensityTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="standard_deviation">
-                      {tOverview("standardDeviationTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="fractal_dimension">
-                      {tOverview("fractalDimensionTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="skewness">
-                      {tOverview("skewnessTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="kurtosis">
-                      {tOverview("kurtosisTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="uniformity">
-                      {tOverview("uniformityTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="relative_smoothness">
-                      {tOverview("relativeSmoothnessTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="taruma_contrast">
-                      {tOverview("tarumaContrastTitle")}
-                    </TabsTrigger>
-                    <TabsTrigger value="taruma_directionality">
-                      {tOverview("tarumaDirectionalityTitle")}
-                    </TabsTrigger>
+                    <TabsTrigger value="entropy">{tOverview("entropyTitle")}</TabsTrigger>
+                    <TabsTrigger value="mean_intensity">{tOverview("meanIntensityTitle")}</TabsTrigger>
+                    <TabsTrigger value="standard_deviation">{tOverview("standardDeviationTitle")}</TabsTrigger>
+                    <TabsTrigger value="fractal_dimension">{tOverview("fractalDimensionTitle")}</TabsTrigger>
+                    <TabsTrigger value="skewness">{tOverview("skewnessTitle")}</TabsTrigger>
+                    <TabsTrigger value="kurtosis">{tOverview("kurtosisTitle")}</TabsTrigger>
+                    <TabsTrigger value="uniformity">{tOverview("uniformityTitle")}</TabsTrigger>
+                    <TabsTrigger value="relative_smoothness">{tOverview("relativeSmoothnessTitle")}</TabsTrigger>
+                    <TabsTrigger value="taruma_contrast">{tOverview("tarumaContrastTitle")}</TabsTrigger>
+                    <TabsTrigger value="taruma_directionality">{tOverview("tarumaDirectionalityTitle")}</TabsTrigger>
+                    <TabsTrigger value="taruma_coarseness">{tOverview("tarumaCoarsenessTitle")}</TabsTrigger>
+                    <TabsTrigger value="taruma_linelikeness">{tOverview("tarumaLinelikenessTitle")}</TabsTrigger>
+                    <TabsTrigger value="taruma_regularity">{tOverview("tarumaRegularityTitle")}</TabsTrigger>
+                    <TabsTrigger value="taruma_roughness">{tOverview("tarumaRoughnessTitle")}</TabsTrigger>
                   </TabsList>
                 </div>
                 <div
@@ -259,6 +243,34 @@ export function DetailsPanel(props) {
                     data={generateDataArray(data, "taruma_directionality", date)}
                     parameter={"tarumaDirectionality"}
                     statistics={generateDataAnalytics(data, "taruma_directionality")}
+                />
+              </TabsContent>
+              <TabsContent value="taruma_coarseness">
+                <OverChart
+                  data={generateDataArray(data, "taruma_coarseness", date)}
+                  parameter={"tarumaCoarseness"}
+                  statistics={generateDataAnalytics(data, "taruma_coarseness")}
+                />
+              </TabsContent>
+              <TabsContent value="taruma_linelikeness">
+                <OverChart
+                  data={generateDataArray(data, "taruma_linelikeness", date)}
+                  parameter={"tarumaLinelikeness"}
+                  statistics={generateDataAnalytics(data, "taruma_linelikeness")}
+                />
+              </TabsContent>
+              <TabsContent value="taruma_regularity">
+                <OverChart
+                  data={generateDataArray(data, "taruma_regularity", date)}
+                  parameter={"tarumaRegularity"}
+                  statistics={generateDataAnalytics(data, "taruma_regularity")}
+                />
+              </TabsContent>
+              <TabsContent value="taruma_roughness">
+                <OverChart
+                  data={generateDataArray(data, "taruma_roughness", date)}
+                  parameter={"tarumaRoughness"}
+                  statistics={generateDataAnalytics(data, "taruma_roughness")}
                 />
               </TabsContent>
             </Tabs>

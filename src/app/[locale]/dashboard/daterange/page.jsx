@@ -22,6 +22,8 @@ const Page = () => {
   const scrollToEndButton = useRef(null);
   const scrollToStartButton = useRef(null);
 
+  console.log(rawData)
+
   const scrollToEnd = () => {
     if (tabList.current) {
       tabList.current.scrollTo({
@@ -105,7 +107,7 @@ const Page = () => {
   })
 
   return (
-    <div className="w-full h-fit flex flex-col md:p-2">
+    <div className="w-full h-fit flex flex-col md:p-2 mt-3">
       {/* Header or Navbar here */}
       <div
         id="nav"
@@ -160,6 +162,18 @@ const Page = () => {
               </TabsTrigger>
               <TabsTrigger value="taruma_directionality">
                 {tOverview("tarumaDirectionalityTitle")}
+              </TabsTrigger>
+              <TabsTrigger value="taruma_coarseness">
+                {tOverview("tarumaCoarsenessTitle")}
+              </TabsTrigger>
+              <TabsTrigger value="taruma_linelikeness">
+                {tOverview("tarumaLinelikenessTitle")}
+              </TabsTrigger>
+              <TabsTrigger value="taruma_regularity">
+                {tOverview("tarumaRegularityTitle")}
+              </TabsTrigger>
+              <TabsTrigger value="taruma_roughness">
+                {tOverview("tarumaRoughnessTitle")}
               </TabsTrigger>
             </TabsList>
           </div>
@@ -260,6 +274,39 @@ const Page = () => {
           />
           <RangeDetails parameter="tarumaDirectionality"/>
         </TabsContent>
+        <TabsContent value="taruma_coarseness" className="">
+          <RangeChart
+            rawData={rawData}
+            selectedTable={selectedTable}
+            parameter="taruma_coarseness"
+          />
+          <RangeDetails parameter="tarumaCoarseness"/>
+        </TabsContent>
+        <TabsContent value="taruma_linelikeness" className="">
+          <RangeChart
+            rawData={rawData}
+            selectedTable={selectedTable}
+            parameter="taruma_linelikeness"
+          />
+          <RangeDetails parameter="tarumaLinelikeness"/>
+        </TabsContent>
+        <TabsContent value="taruma_regularity" className="">
+          <RangeChart
+            rawData={rawData}
+            selectedTable={selectedTable}
+            parameter="taruma_regularity"
+          />
+          <RangeDetails parameter="tarumaRegularity"/>
+        </TabsContent>
+        <TabsContent value="taruma_roughness" className="">
+          <RangeChart
+            rawData={rawData}
+            selectedTable={selectedTable}
+            parameter="taruma_roughness"
+          />
+          <RangeDetails parameter="tarumaRoughness"/>
+        </TabsContent>
+
       </Tabs>
     </div>
   );
