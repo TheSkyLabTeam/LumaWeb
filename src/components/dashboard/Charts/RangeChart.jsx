@@ -96,7 +96,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
         </div>
         <div>
           {/* Statistics - md+ versions*/}
-          <div className="hidden md:grid grid-cols-2 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
+          <div className="hidden md:grid grid-cols-4 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
             <div id="maxContainer">
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
                 Month maximum
@@ -133,8 +133,8 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
         </div>
       </div>
       <div className="flex flex-col h-[calc(100%-5rem)] p-4">
-        {/* Statistics - md+ versions*/}
-        <div className="order-2 grid grid-cols-2 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
+        {/* Statistics - md- versions*/}
+        <div className="order-2 grid md:hidden grid-cols-2 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
           <div id="maxContainer">
             <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
               Month maximum
