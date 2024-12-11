@@ -122,7 +122,7 @@ export function DetailsPanel(props) {
     };
   }, []);
   return (
-    <div className="w-full h-full mt-4 py-2 flex flex-col dark:border-surface-dark/50 rounded-xl">
+    <div className="w-full h-full mt-6 py-2 flex flex-col dark:border-surface-dark/50 rounded-xl">
       <div className="w-full h-fit">
         <div className="h-fit md:h-10 flex flex-col md:flex-row md:items-center">
           <h1

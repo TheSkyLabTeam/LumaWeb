@@ -78,25 +78,25 @@ export const BentoSection = () => {
   }, []);
 
   return (
-    <div className="featuresSection w-screen h-screen flex flex-col justify-center items-center py-8 px-28 gap-6">
-      <div className="relative w-full h-[45%] flex flex-row gap-6">
-        <div className="relative flex w-[70%] h-full  rounded-br-[3rem] overflow-hidden">
+    <div className="featuresSection w-screen h-screen flex flex-col justify-center items-center py-8 px-4 md:px-28 gap-6">
+      <div className="relative w-full h-fit md:h-[45%] flex-col flex md:flex-row gap-6">
+        <div className="relative flex w-full md:w-[70%] h-[40vh] md:h-full  rounded-br-[3rem] overflow-hidden">
           <div
             id="visualizationContainer"
-            className="absolute w-full h-full bg-[#161211] border border-[#5D3F3A] rounded-br-[3rem] transform -translate-y-96"
+            className="absolute w-full h-[50vh] md:h-full bg-[#161211] border border-[#5D3F3A] rounded-br-[3rem] transform -translate-y-96"
           >
             <FloatingImagesContainer />
           </div>
         </div>
-        <div className="relative flex w-[30%] h-full overflow-hidden">
+        <div className="relative flex w-full md:w-[30%] h-full overflow-hidden">
           <div
             id="spectralContainer"
             className="absolute w-full h-full rounded-bl-[3rem] bg-[#161211] border border-[#5D3F3A] translate-x-96"
           />
         </div>
       </div>
-      <div className="w-full h-[55%] flex flex-row gap-6">
-        <div className="w-[35%] h-full overflow-hidden">
+      <div className="w-full h-[55%] flex flex-col md:flex-row gap-6">
+        <div className="w-full md:w-[35%] h-full overflow-hidden">
           <div
             id="accesibilityContainer"
             className="w-full h-full bg-[#161211] border border-[#5D3F3A] rounded-tr-[3rem] translate-y-96"
@@ -104,7 +104,7 @@ export const BentoSection = () => {
             Accesibilidad
           </div>
         </div>
-        <div className="w-[25%] h-full overflow-hidden">
+        <div className="w-full md:w-[25%] h-full overflow-hidden">
           <div
             id="extraFeatureFourContainer"
             className="bg-[#161211] border border-[#5D3F3A] w-full h-full rounded-t-[3rem] translate-y-96"
@@ -112,7 +112,7 @@ export const BentoSection = () => {
             feature
           </div>
         </div>
-        <div className="w-[40%] h-full gap-6 flex flex-col">
+        <div className="w-full md:w-[40%] h-full gap-6 flex flex-row md:flex-col">
           <div className="relative w-full h-full overflow-hidden">
             <div
               id="extraFeatureOneContainer"

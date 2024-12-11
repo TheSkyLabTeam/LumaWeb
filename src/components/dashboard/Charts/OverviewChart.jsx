@@ -15,7 +15,6 @@ import { OverTooltip } from "./OverTooltip";
 export default function OverChart(props) {
   const t = useTranslations("ChartsParameters");
   let statistics = props.statistics;
-  console.log(statistics)
 
   const colors = [
     "#3b82f6",
@@ -36,7 +35,6 @@ export default function OverChart(props) {
     // Manejar el caso en que los datos no estén disponibles
     return <div className="w-full h-96 p-4 bg-surface animate-pulse" />;
   }
-  let categories = Object.keys(props.data[0]).filter(key => key !== "name");
 
   let data = [
     {
@@ -85,11 +83,13 @@ export default function OverChart(props) {
 
       {/* Chart */}
       <div className="flex flex-col md:flex-col mt-6 gap-2 w-full h-fit">
-        <OneAnalytics statistics={statistics} />
+        <div className="order-2 md:order-1">
+          <OneAnalytics statistics={statistics} />
+        </div>
         <div
           id={"barChartContainer"}
           className={
-            "h-[40svh] md:h-[40svh] lg:min-h-[40svh] xl:w-full xl:h-96 xl:min-h-96"
+            "order-1 md:order-2 h-[40svh] md:h-[40svh] lg:min-h-[40svh] xl:w-full xl:h-96 xl:min-h-96"
           }
         >
           <ResponsiveContainer width="100%" height="100%">
@@ -102,7 +102,10 @@ export default function OverChart(props) {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip cursor={false} content={<OverTooltip active={false} payload={[]} label={""}/>}/>
+              <Tooltip
+                cursor={false}
+                content={<OverTooltip active={false} payload={[]} label={""} />}
+              />
               <Bar dataKey="entropy" fill="#191c1e">
                 {data.map((entry, index) =>
                   <Cell

@@ -104,11 +104,11 @@ export const FloatingImagesContainer = () => {
                 className="w-36 h-36 translate-y-[4vw] translate-x-[34vw]"
             />
         </div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mix-blend-difference">
+      <div className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mix-blend-difference">
         <h1 className="font-clash font-semibold text-white text-2xl">
           Visualizacion en tiempo real
         </h1>
-        <p className="font-archivo font-normal text-white/60 text-lg text-center max-w-[40vw]">
+        <p className="font-archivo font-normal text-white/60 text-base md:text-lg text-center md:max-w-[40vw]">
           Accede a imágenes solares de alta resolución y datos en tiempo real
           capturados por observatorios espaciales como SOHO.
         </p>
