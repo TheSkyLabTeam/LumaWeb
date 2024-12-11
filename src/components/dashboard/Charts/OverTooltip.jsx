@@ -42,7 +42,7 @@ export const OverTooltip = ({ active, payload, label }) => {
 
   if (active && payload.length) {
     return (
-      <div className="bg-surface p-3">
+      <div className="bg-surface dark:bg-surface-container-dark text-on-surface dark:text-on-surface-dark p-3">
         <div className="flex flex-row items-center gap-3">
           <div
             id="labelColorIndicator"

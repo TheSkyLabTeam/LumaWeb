@@ -102,7 +102,7 @@ export default function OverChart(props) {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip content={<OverTooltip active={false} payload={[]} label={""}/>}/>
+              <Tooltip cursor={false} content={<OverTooltip active={false} payload={[]} label={""}/>}/>
               <Bar dataKey="entropy" fill="#191c1e">
                 {data.map((entry, index) =>
                   <Cell
