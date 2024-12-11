@@ -41,7 +41,7 @@ export const LandingNav = () => {
   return (
     <nav
       ref={container}
-      className="flex p-6 flex-row justify-between items-center"
+      className="flex p-4 md:p-6 flex-row justify-between items-center"
     >
       <div id="lumaBrandContainer" className="-translate-x-32">
         <Link href={"/"}>
@@ -56,7 +56,7 @@ export const LandingNav = () => {
       </div>
       <div
         id="linksContainer"
-        className="flex flex-row font-archivo font-normal gap-8"
+        className="hidden md:flex flex-row font-archivo font-normal gap-8"
       >
         {[
           ["HOW IT WORKS", "/"],

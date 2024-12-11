@@ -47,7 +47,7 @@ const HeroSection = () => {
     <header className="relative w-full h-[100svh] flex overflow-hidden">
       <div className="block z-10 w-full h-full mix-blend-exclusion antialiased text-[#A0FFFF]">
         <LandingNav />
-        <div className="absolute flex flex-row items-center text-[20vw] font-clash font-semibold
+        <div className="absolute flex flex-row items-center text-[25vw] md:text-[20vw] font-clash font-semibold
              top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden h-[1em]">
           {"LUMA".split("").map((letter, index) =>
             <p
@@ -60,28 +60,28 @@ const HeroSection = () => {
           )}
         </div>
 
-        <div className="absolute bottom-6 flex flex-row w-full justify-between items-end px-6">
+        <div className="absolute bottom-4 md:bottom-6 flex flex-row w-full justify-between items-end px-4 md:px-6">
           <div>
             <p
               id="lumaFeaturesLabel"
-              className="font-archivo font-light text-xs max-w-[20vw] leading-3"
+              className="font-archivo font-light text-xs max-w-[40vw] md:max-w-[20vw] leading-3"
             />
           </div>
           <div>
             <div className="flex w-full justify-end items-baseline">
-              <div className="relative w-16 h-16 mb-2">
+              <div className="relative w-8 h-8 md:w-16 md:h-16 mb-2">
                 {[...Array(6)].map((_, index) =>
                   <div
                     key={index}
                     id={`circle-${index}`}
-                    className="absolute top-0 left-0 w-16 h-16 bg-none border-white border-2 rounded-full"
+                    className="absolute top-0 left-0 w-8 h-8 md:w-16 md:h-16 bg-none border-white border-2 rounded-full"
                   />
                 )}
               </div>
             </div>
             <p
               id="astroFacilities"
-              className="text-end font-archivo font-light text-xs max-w-[20vw] leading-3"
+              className="text-end font-archivo font-light text-xs max-w-[40vw] md:max-w-[20vw] leading-3"
             />
           </div>
         </div>
