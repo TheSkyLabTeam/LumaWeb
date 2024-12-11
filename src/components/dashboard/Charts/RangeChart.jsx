@@ -84,7 +84,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
 
   return (
     <div className="w-full h-[70vh] mt-3 bg-background dark:bg-surface-dark">
-      <div className="w-full flex flex-row items-center justify-between border-b dark:border-outline-variant-dark">
+      <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between border-b dark:border-outline-variant-dark">
         <div>
           <h2 className="text-xl font-semibold font-clash text-on-background dark:text-on-background-dark">{`${selectedTable} - ${parameter.replace(
             "_",
@@ -95,13 +95,13 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
           </p>
         </div>
         <div>
-          {/* Statistics */}
-          <div className="flex flex-row gap-8 justify-end bg-surface dark:bg-surface-dark mb-4">
+          {/* Statistics - md+ versions*/}
+          <div className="hidden md:grid grid-cols-2 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
             <div id="maxContainer">
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
                 Month maximum
               </p>
-              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+              <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.max.toFixed(2)}
               </p>
             </div>
@@ -109,7 +109,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
                 Month minimum
               </p>
-              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+              <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.min.toFixed(2)}
               </p>
             </div>
@@ -117,7 +117,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
                 Month average
               </p>
-              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+              <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.avg.toFixed(2)}
               </p>
             </div>
@@ -125,14 +125,49 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
                 Month standard deviation
               </p>
-              <p className="text-on-surface dark:text-on-surface-dark text-base font-clash font-semibold text-right">
+              <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.stdDev.toFixed(2)}
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="h-[calc(100%-5rem)] p-4">
+      <div className="flex flex-col h-[calc(100%-5rem)] p-4">
+        {/* Statistics - md+ versions*/}
+        <div className="order-2 grid grid-cols-2 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
+          <div id="maxContainer">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+              Month maximum
+            </p>
+            <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
+              {statistics.max.toFixed(2)}
+            </p>
+          </div>
+          <div id="minContainer">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+              Month minimum
+            </p>
+            <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
+              {statistics.min.toFixed(2)}
+            </p>
+          </div>
+          <div id="averageContainer">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+              Month average
+            </p>
+            <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
+              {statistics.avg.toFixed(2)}
+            </p>
+          </div>
+          <div id="stdDevContainer">
+            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+              Month standard deviation
+            </p>
+            <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
+              {statistics.stdDev.toFixed(2)}
+            </p>
+          </div>
+        </div>
         {/* Gráfico */}
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={fixedData} className="font-archivo">
