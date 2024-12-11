@@ -72,6 +72,7 @@ const HeroSection = () => {
               <div className="relative w-16 h-16 mb-2">
                 {[...Array(6)].map((_, index) =>
                   <div
+                    key={index}
                     id={`circle-${index}`}
                     className="absolute top-0 left-0 w-16 h-16 bg-none border-white border-2 rounded-full"
                   />

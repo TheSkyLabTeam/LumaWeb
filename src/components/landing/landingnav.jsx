@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 gsap.registerPlugin([TextPlugin, useGSAP]);
 
 export const LandingNav = () => {
@@ -44,7 +45,9 @@ export const LandingNav = () => {
     >
       <div id="lumaBrandContainer" className="-translate-x-32">
         <Link href={"/"}>
-          <img
+          <Image
+            width={32}
+            height={32}
             className="w-8 h-auto"
             src="/images/LumaIcon.svg"
             alt="Luma Icon"
