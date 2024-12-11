@@ -10,6 +10,7 @@ import {
   ReferenceLine,
   ResponsiveContainer
 } from "recharts";
+import { RangeTooltip } from "./RangeTooltip";
 
 export const RangeChart = ({ rawData, selectedTable, parameter }) => {
   const determineChartColor = () => {
@@ -85,7 +86,10 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
     <div className="w-full h-[60vh] mt-3 bg-background">
       <div className="w-full flex flex-row items-center justify-between border-b">
         <div>
-          <h2 className="text-xl font-semibold font-clash">{`${selectedTable} - ${parameter.replace('_', ' ')}`}</h2>
+          <h2 className="text-xl font-semibold font-clash">{`${selectedTable} - ${parameter.replace(
+            "_",
+            " "
+          )}`}</h2>
           <p className="text-sm text-gray-500">Data visualization over time</p>
         </div>
         <div>
@@ -152,7 +156,9 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
               domain={["auto", "dataMax"]}
               tickFormatter={value => value.toFixed(2)}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip
+              content={<RangeTooltip active={false} payload={[]} label={""} chartColor={graphColor} />}
+            />
             <ReferenceLine
               y={statistics.avg}
               stroke="#ba1a1a"
