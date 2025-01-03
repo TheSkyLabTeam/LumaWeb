@@ -20,17 +20,11 @@ const Page = () => {
 
   // Defining the function to get the url of the image
   const getImage = (table, date) => {
-    if (!table || !date) return ""; // Handle cases where either table or date is null
-
-    for (let i = 0; i < table.rows.length; i++) {
-      let dateObj = table.rows[i].date.split(" ")[0];
-      if (dateObj === date) {
-        return table.rows[i].url;
-      }
-    }
-    return "";
+    if (!table || !date) return []; // Devuelve un arreglo vacío si no hay datos
+    return table.rows
+      .filter(row => row.date.split(" ")[0] === date)
+      .map(row => row.url); // Devuelve un arreglo con las URLs coincidentes
   };
-  
 
   // Date handling functions
   const handleDateChange = date => setSelectedDate(date);
@@ -99,33 +93,39 @@ const Page = () => {
   );
 
   // Animation with GSAP
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl
-      .to("#titleOneDate", { text: t("title"), duration: 0.6 })
-      .to("#subtitleOneDate", { text: `Estadisticos solares para la fecha: ${fixedDate}`, duration: 0.5 })
-      .to("#oneDatePicker", {
-        x: 0,
-        opacity: 100,
-        duration: 0.5,
-        ease: "expo.out"
-      });
+  useEffect(
+    () => {
+      const tl = gsap.timeline();
+      tl
+        .to("#titleOneDate", { text: t("title"), duration: 0.6 })
+        .to("#subtitleOneDate", {
+          text: `Estadisticos solares para la fecha: ${fixedDate}`,
+          duration: 0.5
+        })
+        .to("#oneDatePicker", {
+          x: 0,
+          opacity: 100,
+          duration: 0.5,
+          ease: "expo.out"
+        });
 
-    [
-      "eit171",
-      "eit195",
-      "eit284",
-      "eit304",
-      "eithmiigr",
-      "hmimag"
-    ].forEach((csun, index) => {
-      gsap.to(`.${csun}`, {
-        y: 0,
-        duration: 0.5 + index * 0.1,
-        ease: "back.inOut(2)"
+      [
+        "eit171",
+        "eit195",
+        "eit284",
+        "eit304",
+        "eithmiigr",
+        "hmimag"
+      ].forEach((csun, index) => {
+        gsap.to(`.${csun}`, {
+          y: 0,
+          duration: 0.5 + index * 0.1,
+          ease: "back.inOut(2)"
+        });
       });
-    });
-  }, [fixedDate]);
+    },
+    [fixedDate]
+  );
 
   // Rendering components
   return (
@@ -164,7 +164,7 @@ const Page = () => {
               image={
                 data && data[`data${table}`]
                   ? getImage(data[`data${table}`], fixDate(selectedDate))
-                  : ""
+                  : [] // Asegúrate de que sea un arreglo
               }
               description={t(`description${table}`)}
             />
