@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Content() {
   return (
-    <div className="bg-[#0F1417] py-12 px-6 sm:px-8 lg:px-12 h-full w-full flex flex-col justify-between">
+    <div className="bg-[#171C1F] py-12 px-6 sm:px-8 lg:px-12 h-full w-full flex flex-col justify-between">
       <div className="flex-grow flex items-center justify-center">
         <div className="max-w-7xl w-full">
           <div className="space-y-6">

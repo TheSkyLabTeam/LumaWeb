@@ -10,7 +10,7 @@ export const developers = [
   {
     name: "Andres Garcia Teheran",
     role: "Backend",
-    image: "/images/developers/Andres-Garcia.png",
+    image: "/images/developers/Andres-Garcia.jpeg",
     github: "https://github.com/AndresGarcia-15",
     email: "teherana@utb.edu.co",
     color: "#22C55E",
@@ -18,7 +18,7 @@ export const developers = [
   {
     name: "Adrian Vizcaino",
     role: "Backend",
-    image: "/images/developers/Andres-Garcia.png",
+    image: "/images/developers/Adrian-Vizcaino.jpeg",
     github: "https://github.com/VizcainoA14",
     email: "avizcaino@utb.edu.co",
     color: "#EAB308",
