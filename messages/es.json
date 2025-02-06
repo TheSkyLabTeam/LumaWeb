@@ -5,8 +5,10 @@
     "headercta": "Accede a Luma",
     "aboutcta": "Conoce más",
     "navbar": "Luma",
-    "featuresTitle": "Accede a lo mejor sin mayor complicacion.",
-    "featuresSubtitle": "Para conseguir los estadísticos a los que puedes acceder de forma inmediata, hemos usado métodos estadísticos novedosos e imágenes con gran valor cientifico."
+    "featuresTitle": "Facilitando la comprensión del Sol a través de la tecnología",
+    "featuresSubtitle": "Diseñado para ser intuitivo y accesible, este dashboard facilita\n el estudio de la actividad solar, democratizando el acceso a datos\n complejos y transformándolos en conocimiento comprensible para\n todos.",
+    "teamTitle": "Conectemos bajo el mismo sol",
+    "teamDescription": "Somos el equipo detrás de Luma, apasionados por compartir el\n conocimiento del Sol. Si tienes dudas, ideas o quieres compartir tus\n observaciones, contáctanos. Juntos podemos expandir nuestro\n entendimiento del universo."
   },
   "OneDate": {
     "title": "Parametros para una fecha",

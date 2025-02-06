@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations} from "next-intl";
 
 const chartData = [
   { date: "Apr 1", value: 50 },
@@ -11,6 +12,8 @@ const chartData = [
 ];
 
 export default function SolarDashboard() {
+  const t = useTranslations("Landing");
+
   return (
     <div className="min-h-screen bg-[#0F1417] p-4 sm:p-8">
       <div className="max-w-7xl mx-auto space-y-12">
@@ -18,7 +21,7 @@ export default function SolarDashboard() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h1 className="font-clash text-3xl sm:text-4xl lg:text-5xl text-[#DFE3E7] font-semibold mb-4 leading-tight">
-              Facilitando la comprensión del Sol a través de la tecnología
+              {t("featuresTitle")}
             </h1>
             <p className="font-archivo text-base sm:text-lg text-gray-300 leading-relaxed">
               Diseñado para ser intuitivo y accesible, este dashboard facilita
@@ -32,7 +35,8 @@ export default function SolarDashboard() {
               src="/images/landing.png"
               alt="Dashboard Preview"
               layout="fill"
-              className="rounded-lg shadow-lg"
+              objectFit={"contain"}
+              className="rounded-lg shadow-lg "
             />
           </div>
         </div>
