@@ -26,9 +26,8 @@ export function DatePicker({onDateChange}) {
       <PopoverTrigger asChild>
         <Button
           id="oneDatePicker"
-          style={{fontFamily: 'clash'}}
           className={cn(
-            "opacity-0 -translate-x-8 w-fit justify-centert text-left font-semibold bg-tertiary-container hover:bg-tertiary-container text-on-tertiary-container rounded-full dark:bg-tertiary-container-dark dark:text-on-tertiary-container-dark hover:dark:bg-tertiary-container-dark hover:dark:text-on-tertiary-container-dark hover:shadow-sm",
+            "opacity-0 -translate-x-8 w-fit justify-center text-left font-clash font-semibold bg-tertiary-container hover:bg-tertiary-container text-on-tertiary-container rounded-full dark:bg-tertiary-container-dark dark:text-on-tertiary-container-dark hover:dark:bg-tertiary-container-dark hover:dark:text-on-tertiary-container-dark hover:shadow-sm",
             !date && "text-muted-foreground"
           )}
         >
