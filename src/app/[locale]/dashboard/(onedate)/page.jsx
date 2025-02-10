@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { useGSAP } from "@gsap/react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { DatePicker } from "@/components/dashboard/datepicker";
 import { DetailsPanel } from "@/components/dashboard/detailspanel";
@@ -124,7 +123,7 @@ const Page = () => {
         });
       });
     },
-    [fixedDate]
+    [fixedDate, t]
   );
 
   // Rendering components
