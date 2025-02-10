@@ -1,9 +1,9 @@
 {
   "Landing": {
-    "title": "Una nueva forma de estudiar la actividad solar.",
-    "subtitle": "La forma más sencilla de acceder a resultados estadisticos en el analisis de la actividad solar. Todo en una interfaz hecha para todos.",
-    "headercta": "Accede a Luma",
-    "aboutcta": "Conoce más",
+    "headerLumaDescription": "UNA NUEVA FORMA DE ESTUDIAR LA ACTIVIDAD SOLAR. \n IMAGENES DE ALTA CALIDAD \n +10 AÑOS EN DATOS \n DAHSBOARD INTUITIVA.",
+    "headerAstroFacilities": "PRODUCTO CREADO EN LAS INSTALACIONES DEL SEMILLERO DE ASTRONOMIA Y CIENCIA DE DATOS DE LA UTB",
+    "headerWorkLink": "FUNCIONALIDADES",
+    "headerTeamLink": "EQUIPO",
     "navbar": "Luma",
     "featuresTitle": "Facilitando la comprensión del Sol a través de la tecnología",
     "featuresSubtitle": "Diseñado para ser intuitivo y accesible, este dashboard facilita\n el estudio de la actividad solar, democratizando el acceso a datos\n complejos y transformándolos en conocimiento comprensible para\n todos.",

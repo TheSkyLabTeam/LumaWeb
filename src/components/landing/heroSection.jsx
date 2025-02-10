@@ -15,13 +15,13 @@ const HeroSection = () => {
     // Labels animations
     gsap.to("#lumaFeaturesLabel", {
       text:
-        "UNA NUEVA FORMA DE ESTUDIAR LA ACTIVIDAD SOLAR. \n IMAGENES DE ALTA CALIDAD \n +10 AÑOS EN DATOS \n DAHSBOARD INTUITIVA.",
+        t('headerLumaDescription'),
       duration: 1
     });
 
     gsap.to("#astroFacilities", {
       text:
-        "PRODUCT CREATED IN THE FACILITIES \n OF THE UTB’S ASTRONOMY AND DATA \n SCIENCE RESEARCH SEEDBED.",
+        t('headerAstroFacilities'),
       duration: 1
     });
 

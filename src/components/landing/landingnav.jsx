@@ -5,9 +5,11 @@ import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 gsap.registerPlugin([TextPlugin, useGSAP]);
 
 export const LandingNav = () => {
+  const t = useTranslations("Landing");
   const container = useRef();
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -59,9 +61,8 @@ export const LandingNav = () => {
         className="hidden md:flex flex-row font-archivo font-normal gap-8"
       >
         {[
-          ["HOW IT WORKS", "/"],
-          ["TEAM", "/"],
-          ["CONTACT", "/"]
+          [t('headerWorkLink'), "/"],
+          [t('headerTeamLink'), "/"],
         ].map(([text, href], index) =>
           <Link
             className="-translate-y-32"
