@@ -1,7 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 
 export default function Content() {
+  const t = useTranslations("Landing")
   return (
     <div className="bg-[#171C1F] py-12 px-6 sm:px-8 lg:px-12 h-full w-full flex flex-col justify-between">
       <div className="flex-grow flex items-center justify-center">
@@ -11,7 +13,7 @@ export default function Content() {
               LUMA
             </h2>
             <p className="font-archivo text-lg sm:text-xl lg:text-2xl text-gray-400 max-w-2xl">
-              Una nueva forma de estudiar la actividad solar
+              {t("footerSubtitle")}
             </p>
           </div>
         </div>
