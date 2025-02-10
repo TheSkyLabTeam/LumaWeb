@@ -11,8 +11,11 @@ import {
   ResponsiveContainer
 } from "recharts";
 import { RangeTooltip } from "./RangeTooltip";
+import {useTranslations} from "next-intl";
 
 export const RangeChart = ({ rawData, selectedTable, parameter }) => {
+  const t = useTranslations("RangeChart");
+  const analytics = useTranslations("AnalyticsComponent");
   const determineChartColor = () => {
     switch (selectedTable) {
       case "data171":
@@ -99,7 +102,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
           <div className="hidden md:grid grid-cols-4 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
             <div id="maxContainer">
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-                Month maximum
+                {analytics("max")}
               </p>
               <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.max.toFixed(2)}
@@ -107,7 +110,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
             </div>
             <div id="minContainer">
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-                Month minimum
+                {analytics("min")}
               </p>
               <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.min.toFixed(2)}
@@ -115,7 +118,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
             </div>
             <div id="averageContainer">
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-                Month average
+                {analytics("avg")}
               </p>
               <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.avg.toFixed(2)}
@@ -123,7 +126,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
             </div>
             <div id="stdDevContainer">
               <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-                Month standard deviation
+                {analytics("stdDev")}
               </p>
               <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
                 {statistics.stdDev.toFixed(2)}
@@ -137,7 +140,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
         <div className="order-2 grid md:hidden grid-cols-2 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
           <div id="maxContainer">
             <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-              Month maximum
+              {analytics("max")}
             </p>
             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
               {statistics.max.toFixed(2)}
@@ -145,7 +148,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
           </div>
           <div id="minContainer">
             <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-              Month minimum
+                {analytics("min")}
             </p>
             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
               {statistics.min.toFixed(2)}
@@ -153,7 +156,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
           </div>
           <div id="averageContainer">
             <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-              Month average
+                {analytics("avg")}
             </p>
             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
               {statistics.avg.toFixed(2)}
@@ -161,7 +164,7 @@ export const RangeChart = ({ rawData, selectedTable, parameter }) => {
           </div>
           <div id="stdDevContainer">
             <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
-              Month standard deviation
+                {analytics("stdDev")}
             </p>
             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
               {statistics.stdDev.toFixed(2)}

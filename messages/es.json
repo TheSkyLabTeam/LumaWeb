@@ -12,6 +12,7 @@
   },
   "OneDate": {
     "title": "Parametros para una fecha",
+    "detail": "Estadisticos para la fecha: ",
     "titleImages": "Mostrar imagenes",
     "titleDetails": "Datos extraidos",
     "buttonOverview": "Vista general",
@@ -77,5 +78,17 @@
     "tamuraContrastDescription": "El contraste Tamura es una medida de la diferencia en la intensidad de los pixeles adyacentes en la imagen.",
     "tamuraDirectionalityTitle": "Direccionalidad Tamura",
     "tamuraDirectionalityDescription": "La direccionalidad Tamura es una medida de la orientación preferida de los pixeles en la imagen."
+  },
+  "SunSpotComponent": {
+    "sunspotComponentTitle": "Información de manchas solares",
+    "sunspotCountTitle": "Conteo total de manchas solares",
+    "sunspotNumberObservations": "No. Observaciones",
+    "sunspotStandardDeviation": "Desviación estandar"
+  },
+  "AnalyticsComponent": {
+    "max": "Maximo del mes",
+    "min": "Minimo del mes",
+    "avg": "Promedio del mes",
+    "stdDev": "Desviación estandar del mes"
   }
 }

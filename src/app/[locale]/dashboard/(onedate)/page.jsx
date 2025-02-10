@@ -99,7 +99,7 @@ const Page = () => {
       tl
         .to("#titleOneDate", { text: t("title"), duration: 0.6 })
         .to("#subtitleOneDate", {
-          text: `Estadísticos solares para la fecha: ${fixedDate}`,
+          text: `${t("detail")} ${fixedDate}`,
           duration: 0.5
         })
         .to("#oneDatePicker", {

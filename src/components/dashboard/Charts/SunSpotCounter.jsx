@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
+import {useTranslations} from "next-intl";
 
 export default function SunSpotCounter({date}) {
     const [sunSpotData, setSunSpotData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const t = useTranslations('SunSpotComponent');
 
     function addOneMonth(dateString) {
         let date = new Date(dateString);
@@ -46,24 +48,21 @@ export default function SunSpotCounter({date}) {
             className={`flex flex-col h-[40svh] md:h-[30svh] lg:h-[63vh] bg-surface-container dark:bg-surface-container-dark`}
         >
             <div className={`w-full h-[15%] flex p-3`}>
-                <h2 className={`font-clash font-semibold text-lg text-on-background dark:text-on-background-dark`}>Informacion
-                    de manchas solares</h2>
+                <h2 className={`font-clash font-semibold text-lg text-on-background dark:text-on-background-dark`}>{t('sunspotComponentTitle')}</h2>
             </div>
             <div className={`w-full h-[70%] flex flex-col justify-center items-center`}>
                 <h3 className={`text-8xl font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_5}</h3>
-                <p className={`font-archivo text-base text-on-surface-variant dark:text-on-surface-variant-dark`}>Conteno
-                    total de manchas solares</p>
+                <p className={`font-archivo text-base text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotCountTitle')}</p>
             </div>
             <div
                 className={`w-full h-fit xl:h-[15%] flex flex-row bg-surface-container dark:bg-surface-container-low-dark p-2 gap-2`}>
                 <div className={`w-1/2 h-full flex flex-col text-center justify-center items-center`}>
                     <p className={`text-base font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_6}</p>
-                    <p className={`text-sm font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>Desviacion
-                        estandar</p>
+                    <p className={`text-sm font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotStandardDeviation')}</p>
                 </div>
                 <div className={`w-1/2 h-full flex flex-col text-center justify-center items-center`}>
                     <p className={`text-base font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_7}</p>
-                    <p className={`text-sm font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>No. de observaciones</p>
+                    <p className={`text-sm font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotNumberObservations')}</p>
                 </div>
             </div>
         </div>
