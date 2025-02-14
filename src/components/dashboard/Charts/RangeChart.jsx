@@ -88,7 +88,7 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
                     {/* Statistics - md+ versions*/}
                     <div className="hidden md:grid grid-cols-4 gap-8 justify-end bg-surface dark:bg-surface-dark my-3">
                         <div id="maxContainer">
-                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm text-right">
                                 {analytics("max")}
                             </p>
                             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
@@ -96,7 +96,7 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
                             </p>
                         </div>
                         <div id="minContainer">
-                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm text-right">
                                 {analytics("min")}
                             </p>
                             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
@@ -104,7 +104,7 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
                             </p>
                         </div>
                         <div id="averageContainer">
-                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm text-right">
                                 {analytics("avg")}
                             </p>
                             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
@@ -112,7 +112,7 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
                             </p>
                         </div>
                         <div id="stdDevContainer">
-                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm">
+                            <p className="text-on-surface-variant dark:text-on-surface-variant-dark/60 font-archivo text-sm text-right">
                                 {analytics("stdDev")}
                             </p>
                             <p className="text-on-surface dark:text-on-surface-dark text-lg font-clash font-semibold text-right">
