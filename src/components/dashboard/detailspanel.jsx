@@ -66,7 +66,6 @@ const generateDataAnalytics = (data, parameter) => {
 export function DetailsPanel(props) {
     const t = useTranslations("OneDate");
     const tOverview = useTranslations("ChartsParameters");
-    const [buttonActive, setButtonActive] = useState("over");
     const tabList = useRef(null);
     const scrollToEndButton = useRef(null);
     const scrollToStartButton = useRef(null);
@@ -121,6 +120,24 @@ export function DetailsPanel(props) {
             }
         };
     }, []);
+
+    const parameters = [
+        "entropy",
+        "mean_intensity",
+        "standard_deviation",
+        "fractal_dimension",
+        "skewness",
+        "kurtosis",
+        "uniformity",
+        "relative_smoothness",
+        "taruma_contrast",
+        "taruma_directionality",
+        "taruma_coarseness",
+        "taruma_linelikeness",
+        "taruma_regularity",
+        "taruma_roughness",
+    ]
+
     return (
         <div className="w-full h-full mt-6 py-2 flex flex-col dark:border-surface-dark/50 rounded-xl">
             <div className="w-full h-fit">
@@ -141,30 +158,11 @@ export function DetailsPanel(props) {
                                     <TabsList
                                         className="font-clash font-semibold"
                                     >
-                                        <TabsTrigger value="entropy">{tOverview("entropyTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="mean_intensity">{tOverview("meanIntensityTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="standard_deviation">{tOverview("standardDeviationTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="fractal_dimension">{tOverview("fractalDimensionTitle")}</TabsTrigger>
-                                        <TabsTrigger value="skewness">{tOverview("skewnessTitle")}</TabsTrigger>
-                                        <TabsTrigger value="kurtosis">{tOverview("kurtosisTitle")}</TabsTrigger>
-                                        <TabsTrigger value="uniformity">{tOverview("uniformityTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="relative_smoothness">{tOverview("relativeSmoothnessTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="taruma_contrast">{tOverview("tarumaContrastTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="taruma_directionality">{tOverview("tarumaDirectionalityTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="taruma_coarseness">{tOverview("tarumaCoarsenessTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="taruma_linelikeness">{tOverview("tarumaLinelikenessTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="taruma_regularity">{tOverview("tarumaRegularityTitle")}</TabsTrigger>
-                                        <TabsTrigger
-                                            value="taruma_roughness">{tOverview("tarumaRoughnessTitle")}</TabsTrigger>
+                                        {parameters.map((param) => (
+                                            <TabsTrigger key={param} value={param}>
+                                                {tOverview(`${param}Title`)}
+                                            </TabsTrigger>
+                                        ))}
                                     </TabsList>
                                 </div>
                                 <div
@@ -186,119 +184,16 @@ export function DetailsPanel(props) {
                                         className="h-5 w-5 text-on-tertiary-container dark:text-on-tertiary-container-dark rotate-180"/>
                                 </div>
                             </div>
-
-                            <TabsContent value="entropy" className="flex">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "entropy", date)}
-                                    parameter={"entropy"}
-                                    statistics={generateDataAnalytics(data, "entropy")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="mean_intensity" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "mean_intensity", date)}
-                                    parameter={"meanIntensity"}
-                                    statistics={generateDataAnalytics(data, "mean_intensity")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="standard_deviation" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "standard_deviation", date)}
-                                    parameter={"standardDeviation"}
-                                    statistics={generateDataAnalytics(data, "standard_deviation")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="fractal_dimension" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "fractal_dimension", date)}
-                                    parameter={"fractalDimension"}
-                                    statistics={generateDataAnalytics(data, "fractal_dimension")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="skewness" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "skewness", date)}
-                                    parameter={"skewness"}
-                                    statistics={generateDataAnalytics(data, "skewness")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="kurtosis" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "kurtosis", date)}
-                                    parameter={"kurtosis"}
-                                    statistics={generateDataAnalytics(data, "kurtosis")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="uniformity" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "uniformity", date)}
-                                    parameter={"uniformity"}
-                                    statistics={generateDataAnalytics(data, "uniformity")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="relative_smoothness" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "relative_smoothness", date)}
-                                    parameter={"relativeSmoothness"}
-                                    statistics={generateDataAnalytics(data, "relative_smoothness")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="taruma_contrast" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "taruma_contrast", date)}
-                                    parameter={"tarumaContrast"}
-                                    statistics={generateDataAnalytics(data, "taruma_contrast")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="taruma_directionality" className="">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "taruma_directionality", date)}
-                                    parameter={"tarumaDirectionality"}
-                                    statistics={generateDataAnalytics(data, "taruma_directionality")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="taruma_coarseness">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "taruma_coarseness", date)}
-                                    parameter={"tarumaCoarseness"}
-                                    statistics={generateDataAnalytics(data, "taruma_coarseness")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="taruma_linelikeness">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "taruma_linelikeness", date)}
-                                    parameter={"tarumaLinelikeness"}
-                                    statistics={generateDataAnalytics(data, "taruma_linelikeness")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="taruma_regularity">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "taruma_regularity", date)}
-                                    parameter={"tarumaRegularity"}
-                                    statistics={generateDataAnalytics(data, "taruma_regularity")}
-                                />
-                            </TabsContent>
-                            <TabsContent value="taruma_roughness">
-                                <OverChart
-                                    date={date}
-                                    data={generateDataArray(data, "taruma_roughness", date)}
-                                    parameter={"tarumaRoughness"}
-                                    statistics={generateDataAnalytics(data, "taruma_roughness")}
-                                />
-                            </TabsContent>
+                            {parameters.map((param) => (
+                                <TabsContent key={param} value={param}>
+                                    <OverChart
+                                        date={date}
+                                        data={generateDataArray(data, param, date)}
+                                        parameter={param}
+                                        statistics={generateDataAnalytics(data, param)}
+                                    />
+                                </TabsContent>
+                            ))}
                         </Tabs>
                     </div>
                 </div>
