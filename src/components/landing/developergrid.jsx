@@ -12,6 +12,7 @@ export default function DeveloperGrid() {
         
         {/* Added max-width */}
         {topRow.map((developer, index) => (
+            // eslint-disable-next-line react/jsx-key
           <div className="max-w-[280px] mx-auto w-full">
            
             {/* Card wrapper with max-width */}
@@ -25,6 +26,7 @@ export default function DeveloperGrid() {
        
         {/* Adjusted max-width */}
         {bottomRow.map((developer, index) => (
+            // eslint-disable-next-line react/jsx-key
           <div className="max-w-[280px] mx-auto w-full">
           
             {/* Card wrapper with max-width */}
