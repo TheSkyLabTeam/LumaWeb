@@ -1,315 +1,169 @@
-"use client";
-import { TablePicker } from "@/components/dashboard/tablepicker";
-import { useTranslations } from "next-intl";
-import { useState, useEffect, useRef } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TriangleRightIcon } from "@radix-ui/react-icons";
-import { RangeChart } from "@/components/dashboard/Charts/RangeChart";
-import DateRangePicker from "@/components/dashboard/daterangepicker";
-import { RangeDetails } from "@/components/dashboard/rangedetails";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { TextPlugin } from "gsap/TextPlugin";
-gsap.registerPlugin(TextPlugin, useGSAP);
+"use client"
+import {useState, useEffect, useRef, useCallback} from "react"
+import {useTranslations} from "next-intl"
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
+import {TriangleRightIcon} from "@radix-ui/react-icons"
+import {TablePicker} from "@/components/dashboard/tablepicker"
+import {RangeChart} from "@/components/dashboard/Charts/RangeChart"
+import DateRangePicker from "@/components/dashboard/daterangepicker"
+import {RangeDetails} from "@/components/dashboard/rangedetails"
+import gsap from "gsap"
+import {useGSAP} from "@gsap/react"
+import {TextPlugin} from "gsap/TextPlugin"
+
+gsap.registerPlugin(TextPlugin, useGSAP)
 
 const Page = () => {
-  const t = useTranslations("DateRange");
-  const tOverview = useTranslations("ChartsParameters");
-  const [selectedRange, setSelectedRange] = useState({from: '2024-04-01', to: '2024-05-30'});
-  const [selectedTable, setSelectedTable] = useState('data171');
-  const [rawData, setRawData] = useState(null);
-  const tabList = useRef(null);
-  const scrollToEndButton = useRef(null);
-  const scrollToStartButton = useRef(null);
+    const t = useTranslations("DateRange")
+    const tOverview = useTranslations("ChartsParameters")
+    const [selectedRange, setSelectedRange] = useState({from: "2024-04-01", to: "2024-05-30"})
+    const [selectedTable, setSelectedTable] = useState("data171")
+    const [rawData, setRawData] = useState(null)
+    const tabList = useRef(null)
+    const scrollToEndButton = useRef(null)
+    const scrollToStartButton = useRef(null)
 
-  console.log(rawData)
-
-  const scrollToEnd = () => {
-    if (tabList.current) {
-      tabList.current.scrollTo({
-        left: tabList.current.scrollWidth,
-        behavior: "smooth"
-      });
+    const scrollToEnd = () => {
+        if (tabList.current) {
+            tabList.current.scrollTo({
+                left: tabList.current.scrollWidth,
+                behavior: "smooth",
+            })
+        }
     }
-  };
 
-  const scrollToStart = () => {
-    if (tabList.current) {
-      tabList.current.scrollTo({
-        left: 0,
-        behavior: "smooth"
-      });
+    const scrollToStart = () => {
+        if (tabList.current) {
+            tabList.current.scrollTo({
+                left: 0,
+                behavior: "smooth",
+            })
+        }
     }
-  };
 
-  const updateButtonVisibility = () => {
-    if (tabList.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = tabList.current;
-      if (scrollLeft === 0) {
-        scrollToStartButton.current.style.display = "none";
-      } else {
-        scrollToStartButton.current.style.display = "flex";
-      }
-      if (scrollLeft + clientWidth >= scrollWidth) {
-        scrollToEndButton.current.style.display = "none";
-      } else {
-        scrollToEndButton.current.style.display = "flex";
-      }
-    }
-  };
+    const updateButtonVisibility = useCallback(() => {
+        if (tabList.current) {
+            const {scrollLeft, scrollWidth, clientWidth} = tabList.current
+            if (scrollToStartButton.current) {
+                scrollToStartButton.current.style.display = scrollLeft === 0 ? "none" : "flex"
+            }
+            if (scrollToEndButton.current) {
+                scrollToEndButton.current.style.display = scrollLeft + clientWidth >= scrollWidth ? "none" : "flex"
+            }
+        }
+    }, [])
 
-  useEffect(() => {
-    updateButtonVisibility();
-    if (tabList.current) {
-      tabList.current.addEventListener("scroll", updateButtonVisibility);
-      window.addEventListener("resize", updateButtonVisibility);
-    }
-    return () => {
-      if (tabList.current) {
-        tabList.current.removeEventListener("scroll", updateButtonVisibility);
-        window.removeEventListener("resize", updateButtonVisibility);
-      }
-    };
-  }, []);
+    useEffect(() => {
+        updateButtonVisibility()
+        const currentTabList = tabList.current
+        if (currentTabList) {
+            currentTabList.addEventListener("scroll", updateButtonVisibility)
+            window.addEventListener("resize", updateButtonVisibility)
+        }
+        return () => {
+            if (currentTabList) {
+                currentTabList.removeEventListener("scroll", updateButtonVisibility)
+                window.removeEventListener("resize", updateButtonVisibility)
+            }
+        }
+    }, [updateButtonVisibility])
 
-  //Defining date handler
-  const handleRangeChange = date => setSelectedRange(date);
+    const handleRangeChange = useCallback((date) => setSelectedRange(date), [])
 
-  // Defining table handler
-  const handleTableChange = table => {
-    setSelectedTable(table);
-  };
+    const handleTableChange = useCallback((table) => {
+        setSelectedTable(table)
+    }, [])
 
-  //getting data by range
-  const getData = () => {
-      fetch(`/api/get-range?startDate=${selectedRange?.from}&endDate=${selectedRange?.to}`)
-          .then(res => res.json())
-          .then(data => {
-              setRawData(data);
-          })
-          .finally(() => {
-          });
-      // .catch(err => console.log(err))
-  }
+    const getData = useCallback(() => {
+        fetch(`/api/get-range?startDate=${selectedRange?.from}&endDate=${selectedRange?.to}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setRawData(data)
+            })
+            .catch((err) => console.error("Error fetching data:", err))
+    }, [selectedRange])
 
-  useEffect(
-    () => {
-      getData();
-    },
-    [selectedRange, selectedTable]
-  );
+    useEffect(() => {
+        getData()
+    }, [getData]) //Corrected dependency array
 
-  // Animations
-  useGSAP(() => {
-    const tl = gsap.timeline();
-    tl
-      .to('#titleRangeDate', { text: t("title"), duration: 0.6})
-  })
+    useGSAP(() => {
+        const tl = gsap.timeline()
+        tl.to("#titleRangeDate", {text: t("title"), duration: 0.6})
+    })
 
-  return (
-    <div className="w-full h-fit flex flex-col md:p-2 mt-3">
-      {/* Header or Navbar here */}
-      <div
-        id="nav"
-        className="w-full h-fit flex flex-col mb-4 md:flex-row md:justify-between md:items-center"
-      >
-        <div id="titleContainer" className="font-clash font-semibold">
-          <h1
-            id="titleRangeDate"
-            className="max-w-lg text-3xl font-semibold text-on-background dark:text-on-background-dark"
-          /> 
+    const parameters = [
+        "entropy",
+        "mean_intensity",
+        "standard_deviation",
+        "fractal_dimension",
+        "skewness",
+        "kurtosis",
+        "uniformity",
+        "relative_smoothness",
+        "taruma_contrast",
+        "taruma_directionality",
+        "taruma_coarseness",
+        "taruma_linelikeness",
+        "taruma_regularity",
+        "taruma_roughness",
+    ]
+
+    return (
+        <div className="w-full h-fit flex flex-col md:p-2 mt-3">
+            <div id="nav" className="w-full h-fit flex flex-col mb-4 md:flex-row md:justify-between md:items-center">
+                <div id="titleContainer" className="font-clash font-semibold">
+                    <h1
+                        id="titleRangeDate"
+                        className="max-w-lg text-3xl font-semibold text-on-background dark:text-on-background-dark"
+                    />
+                </div>
+                <div id="dateRangeContainer" className="flex flex-col md:flex-row mt-2 md:mt-0 gap-4">
+                    <TablePicker onTableChange={handleTableChange}/>
+                    <DateRangePicker onRangeChange={handleRangeChange}/>
+                </div>
+            </div>
+
+            <Tabs defaultValue="entropy" className="w-full mt-4">
+                <div className="flex relative justify-center items-center">
+                    <div className="w-full scrollable overflow-x-scroll" ref={tabList}>
+                        <TabsList className="font-clash font-semibold">
+                            {parameters.map((param) => (
+                                <TabsTrigger key={param} value={param}>
+                                    {tOverview(`${param}Title`)}
+                                </TabsTrigger>
+                            ))}
+                        </TabsList>
+                    </div>
+                    <div
+                        ref={scrollToEndButton}
+                        id="ScrollToEndButton"
+                        className="cursor-pointer flex justify-center items-center absolute w-10 h-10 right-[0.4rem] bg-surface-container-lowest hover:bg-tertiary-container dark:bg-surface-container-highest-dark dark:hover:bg-tertiary-container-dark rounded-full transition-all"
+                        onClick={scrollToEnd}
+                    >
+                        <TriangleRightIcon
+                            className="h-5 w-5 text-on-tertiary-container dark:text-on-tertiary-container-dark"/>
+                    </div>
+                    <div
+                        ref={scrollToStartButton}
+                        id="ScrollToStartButton"
+                        className="cursor-pointer flex justify-center items-center absolute w-10 h-10 left-[0.4rem] bg-surface-container-lowest hover:bg-tertiary-container dark:bg-surface-container-highest-dark dark:hover:bg-tertiary-container-dark rounded-full transition-all"
+                        onClick={scrollToStart}
+                    >
+                        <TriangleRightIcon
+                            className="h-5 w-5 text-on-tertiary-container dark:text-on-tertiary-container-dark rotate-180"/>
+                    </div>
+                </div>
+                {parameters.map((param) => (
+                    <TabsContent key={param} value={param}>
+                        <RangeChart rawData={rawData} selectedTable={selectedTable} parameter={param}/>
+                        <RangeDetails parameter={param}/>
+                    </TabsContent>
+                ))}
+            </Tabs>
         </div>
-        <div
-          id="dateRangeContainer"
-          className="flex flex-col md:flex-row mt-2 md:mt-0 gap-4"
-        >
-          <TablePicker onTableChange={handleTableChange} />
-          <DateRangePicker onRangeChange={handleRangeChange} />
-        </div>
-      </div>
+    )
+}
 
-      {/* Line chart selector and Line chart here */}
-      <Tabs defaultValue="entropy" className="w-full mt-4">
-        <div className="flex relative justify-center items-center">
-          <div className="w-full scrollable overflow-x-scroll" ref={tabList}>
-            <TabsList className='font-clash font-semibold'>
-              <TabsTrigger value="entropy">
-                {tOverview("entropyTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="mean_intensity">
-                {tOverview("meanIntensityTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="standard_deviation">
-                {tOverview("standardDeviationTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="fractal_dimension">
-                {tOverview("fractalDimensionTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="skewness">
-                {tOverview("skewnessTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="kurtosis">
-                {tOverview("kurtosisTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="uniformity">
-                {tOverview("uniformityTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="relative_smoothness">
-                {tOverview("relativeSmoothnessTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="taruma_contrast">
-                {tOverview("tarumaContrastTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="taruma_directionality">
-                {tOverview("tarumaDirectionalityTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="taruma_coarseness">
-                {tOverview("tarumaCoarsenessTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="taruma_linelikeness">
-                {tOverview("tarumaLinelikenessTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="taruma_regularity">
-                {tOverview("tarumaRegularityTitle")}
-              </TabsTrigger>
-              <TabsTrigger value="taruma_roughness">
-                {tOverview("tarumaRoughnessTitle")}
-              </TabsTrigger>
-            </TabsList>
-          </div>
-          <div
-            ref={scrollToEndButton}
-            id="ScrollToEndButton"
-            className="cursor-pointer flex justify-center items-center absolute w-10 h-10 right-[0.4rem] bg-surface-container-lowest hover:bg-tertiary-container dark:bg-surface-container-highest-dark dark:hover:bg-tertiary-container-dark rounded-full transition-all"
-            onClick={scrollToEnd}
-          >
-            <TriangleRightIcon className="h-5 w-5 text-on-tertiary-container dark:text-on-tertiary-container-dark" />
-          </div>
-          <div
-            ref={scrollToStartButton}
-            id="ScrollToStartButton"
-            className="cursor-pointer flex justify-center items-center absolute w-10 h-10 left-[0.4rem] bg-surface-container-lowest hover:bg-tertiary-container dark:bg-surface-container-highest-dark dark:hover:bg-tertiary-container-dark rounded-full transition-all"
-            onClick={scrollToStart}
-          >
-            <TriangleRightIcon className="h-5 w-5 text-on-tertiary-container dark:text-on-tertiary-container-dark rotate-180" />
-          </div>
-        </div>
-        <TabsContent value="entropy">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="entropy"
-          />
-          <RangeDetails parameter="entropy"/>
-        </TabsContent>
-        <TabsContent value="mean_intensity" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="mean_intensity"
-          />
-          <RangeDetails parameter="meanIntensity"/>
-        </TabsContent>
-        <TabsContent value="standard_deviation" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="standard_deviation"
-          />
-          <RangeDetails parameter="standardDeviation"/>
-        </TabsContent>
-        <TabsContent value="fractal_dimension" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="fractal_dimension"
-          />
-          <RangeDetails parameter="fractalDimension"/>
-        </TabsContent>
-        <TabsContent value="skewness" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="skewness"
-          />
-          <RangeDetails parameter="skewness"/>
-        </TabsContent>
-        <TabsContent value="kurtosis" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="kurtosis"
-          />
-          <RangeDetails parameter="kurtosis"/>
-        </TabsContent>
-        <TabsContent value="uniformity" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="uniformity"
-          />
-          <RangeDetails parameter="uniformity"/>
-        </TabsContent>
-        <TabsContent value="relative_smoothness" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="relative_smoothness"
-          />
-          <RangeDetails parameter="relativeSmoothness"/>
-        </TabsContent>
-        <TabsContent value="taruma_contrast" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="taruma_contrast"
-          />
-          <RangeDetails parameter="tarumaContrast"/>
-        </TabsContent>
-        <TabsContent value="taruma_directionality" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="taruma_directionality"
-          />
-          <RangeDetails parameter="tarumaDirectionality"/>
-        </TabsContent>
-        <TabsContent value="taruma_coarseness" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="taruma_coarseness"
-          />
-          <RangeDetails parameter="tarumaCoarseness"/>
-        </TabsContent>
-        <TabsContent value="taruma_linelikeness" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="taruma_linelikeness"
-          />
-          <RangeDetails parameter="tarumaLinelikeness"/>
-        </TabsContent>
-        <TabsContent value="taruma_regularity" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="taruma_regularity"
-          />
-          <RangeDetails parameter="tarumaRegularity"/>
-        </TabsContent>
-        <TabsContent value="taruma_roughness" className="">
-          <RangeChart
-            rawData={rawData}
-            selectedTable={selectedTable}
-            parameter="taruma_roughness"
-          />
-          <RangeDetails parameter="tarumaRoughness"/>
-        </TabsContent>
+export default Page
 
-      </Tabs>
-    </div>
-  );
-};
-
-export default Page;
