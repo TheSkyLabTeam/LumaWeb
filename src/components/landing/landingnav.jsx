@@ -76,8 +76,8 @@ export const LandingNav = () => {
       </div>
       <div id="getStartedContainer" className="translate-x-36">
         <Link href={"/dashboard"}>
-          <Button className="border rounded-none bg-black">
-            <p className="font-archivo font-semibold">Get started</p>
+          <Button className="border rounded-none bg-[#A0FFFF] hover:bg-white">
+            <p className="font-archivo font-semibold text-black">Get started</p>
           </Button>
         </Link>
       </div>
