@@ -33,7 +33,7 @@ export default function SolarDashboard() {
               alt="Dashboard Preview"
               layout="fill"
               objectFit={"contain"}
-              className="rounded-lg shadow-lg "
+              className="rounded-lg"
             />
           </div>
         </div>
@@ -49,7 +49,8 @@ export default function SolarDashboard() {
               {t("feature1Description")}
             </p>
             <Link
-              href="/soho-images"
+              href="https://soho.nascom.nasa.gov/"
+              target={"_blank"}
               className="font-archivo text-base text-cyan-400 hover:text-cyan-300 transition-colors"
             >
               {`${t('feature1Link')} →`}
