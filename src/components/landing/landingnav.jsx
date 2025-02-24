@@ -63,6 +63,7 @@ export const LandingNav = () => {
         {[
           [t('headerWorkLink'), "/"],
           [t('headerTeamLink'), "/"],
+          [t('headerCredits'), "/credits"],
         ].map(([text, href], index) =>
           <Link
             className="-translate-y-32"
