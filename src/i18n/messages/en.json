@@ -5,6 +5,7 @@
     "headerWorkLink": "FEATURES",
     "headerTeamLink": "TEAM",
     "headerCredits": "CREDITS",
+    "headerCta": "Get Started",
     "navbar": "Luma",
     "featuresTitle": "Facilitating the understanding of the Sun through technology",
     "featuresDescription": "Designed to be intuitive and accessible, this dashboard simplifies\n the study of solar activity, democratizing access to complex data\n and transforming it into comprehensible knowledge for everyone.",
@@ -13,8 +14,10 @@
     "feature1Link": "Learn more about SOHO images",
     "feature2Title": "Temporal Analysis Metrics",
     "feature2Description": "Analyze the evolution of critical solar parameters over time with\n detailed metrics such as entropy, fractal dimension, and spectral\n analysis. These tools provide deep insight into solar activity and\n its impact on long-term phenomena.",
+    "feature2Link": "Go to Luma's range analysis",
     "feature3Title": "Interactive Educational Resources",
     "feature3Description": "Discover an educational space designed for students and\n teachers. This dashboard offers simulations, educational\n visualizations, and lessons on solar phenomena, making it easier\n to learn about topics like solar cycles, sunspots, and\n geomagnetic storms.",
+    "feature3Link": "Start the dashboard",
     "teamTitle": "Connecting under the same sun",
     "teamDescription": "We are the team behind Luma, passionate about sharing knowledge\n about the Sun. If you have questions, ideas, or want to share your\n observations, contact us. Together we can expand our\n understanding of the universe.",
     "footerSubtitle": "A new way to study solar activity"

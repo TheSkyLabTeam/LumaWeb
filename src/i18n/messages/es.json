@@ -5,6 +5,7 @@
     "headerWorkLink": "FUNCIONALIDADES",
     "headerTeamLink": "EQUIPO",
     "headerCredits": "CREDITOS",
+    "headerCta": "Iniciar Luma",
     "navbar": "Luma",
     "featuresTitle": "Facilitando la comprensión del Sol a través de la tecnología",
     "featuresDescription": "Diseñado para ser intuitivo y accesible, este dashboard facilita\n el estudio de la actividad solar, democratizando el acceso a datos\n complejos y transformándolos en conocimiento comprensible para\n todos.",
@@ -13,8 +14,10 @@
     "feature1Link": "Conoce más sobre las imágenes del SOHO",
     "feature2Title": "Métricas de Análisis Temporal",
     "feature2Description": "Analiza la evolución de parámetros solares críticos a lo largo del\n tiempo con métricas detalladas como entropía, dimensión fractal y\n análisis espectral. Estas herramientas proporcionan una\n comprensión profunda de la actividad solar y su impacto en\n fenómenos a largo plazo.",
+    "feature2Link": "Accede al selector de rangos de fechas",
     "feature3Title": "Recursos Educativos Interactivos",
     "feature3Description": "Descubre un espacio educativo diseñado para estudiantes y\n              profesores. Este dashboard ofrece simulaciones, visualizaciones\n              didácticas y lecciones sobre fenómenos solares, facilitando el\n              aprendizaje sobre temas como ciclos solares, manchas solares y\n              tormentas geomagnéticas.",
+    "feature3Link": "Inicia el dashboard",
     "teamTitle": "Conectemos bajo el mismo sol",
     "teamDescription": "Somos el equipo detrás de Luma, apasionados por compartir el\n conocimiento del Sol. Si tienes dudas, ideas o quieres compartir tus\n observaciones, contáctanos. Juntos podemos expandir nuestro\n entendimiento del universo.",
     "footerSubtitle": "Una nueva forma de estudiar la actividad solar"
