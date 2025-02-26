@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {useTranslations} from "next-intl";
+import SunSkeleton from "@/components/skeletons/dashboard/SunSkeleton";
 
 export default function SunSpotCounter({date}) {
     const [sunSpotData, setSunSpotData] = useState(null);
@@ -38,7 +39,7 @@ export default function SunSpotCounter({date}) {
         }
         fetchSunSpotData();
     }, [originalDate, nextMonthDate, dateDiff]);
-    if (loading) return <div>Cargando... </div>
+    if (loading) return <SunSkeleton />
 
 
 
