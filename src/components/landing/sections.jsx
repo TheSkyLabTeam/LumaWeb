@@ -1,21 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import {Link} from "@/navigation"
 import { useTranslations} from "next-intl";
-
-const chartData = [
-  { date: "Apr 1", value: 50 },
-  { date: "Apr 15", value: 55 },
-  { date: "Apr 30", value: 48 },
-  { date: "May 17", value: 60 },
-];
 
 export default function SolarDashboard() {
   const t = useTranslations("Landing");
 
   return (
-    <div className="min-h-screen bg-[#0F1417] p-4 sm:p-8">
+    <div id={'feature-section'} className="min-h-screen bg-[#0F1417] p-4 sm:p-8">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Hero Section */}
         <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -66,7 +59,7 @@ export default function SolarDashboard() {
               {t("feature2Description")}
             </p>
             <Link
-              href="/temporal-analysis"
+              href="/dashboard/daterange"
               className="font-archivo text-base text-cyan-400 hover:text-cyan-300 transition-colors mt-auto"
             >
                 {`${t('feature2Link')} →`}
@@ -82,7 +75,7 @@ export default function SolarDashboard() {
               {t("feature3Description")}
             </p>
             <Link
-              href="/educational-resources"
+              href="/dashboard"
               className="font-archivo text-base text-cyan-400 hover:text-cyan-300 transition-colors"
             >
                 {`${t('feature3Link')} →`}

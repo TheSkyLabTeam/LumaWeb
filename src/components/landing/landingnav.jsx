@@ -19,6 +19,29 @@ export const LandingNav = () => {
     router.replace(pathname, { locale });
   };
 
+  // Función para manejar el scroll suave a secciones
+  const scrollToSection = (sectionId, e) => {
+    e.preventDefault();
+
+    // Solo ejecutar en la página principal
+    if (pathname !== '/') {
+      router.push('/');
+      // Espera a que la navegación se complete antes de intentar desplazarse
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+      return;
+    }
+
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   useGSAP(() => {
     const tl = gsap.timeline();
 
@@ -69,18 +92,31 @@ export const LandingNav = () => {
             className="hidden md:flex flex-row font-archivo font-normal gap-8"
         >
           {[
-            [t('headerWorkLink'), "/"],
-            [t('headerTeamLink'), "/"],
-            [t('headerCredits'), "/credits"],
+            // Ahora cada link tiene un ID de sección asociado
+            [t('headerWorkLink'), "#feature-section"],
+            [t('headerTeamLink'), "#team-section"],
+            [t('headerCredits'), "/credits"], // Este mantiene la navegación normal
           ].map(([text, href], index) =>
-              <Link
-                  className="-translate-y-32"
-                  id={`navLink-${index}`}
-                  key={index}
-                  href={href}
-              >
-                {text}
-              </Link>
+              href.startsWith('#') ? (
+                  <a
+                      className="-translate-y-32"
+                      id={`navLink-${index}`}
+                      key={index}
+                      href={href}
+                      onClick={(e) => scrollToSection(href.substring(1), e)}
+                  >
+                    {text}
+                  </a>
+              ) : (
+                  <Link
+                      className="-translate-y-32"
+                      id={`navLink-${index}`}
+                      key={index}
+                      href={href}
+                  >
+                    {text}
+                  </Link>
+              )
           )}
         </div>
         <div id="getStartedContainer" className="flex flex-row items-center gap-6 translate-x-52">
