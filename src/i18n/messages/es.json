@@ -99,5 +99,12 @@
     "min": "Minimo del mes",
     "avg": "Promedio del mes",
     "stdDev": "Desviación estandar del mes"
+  },
+  "CreditsPage": {
+    "title": "Créditos",
+    "paragraph1": "LUMA utiliza imágenes del Observatorio Solar y Heliosférico SOHO (Solar and Heliospheric Observatory) para realizar sus análisis y obtener parámetros de actividad solar. SOHO es un proyecto de cooperación internacional entre la ESA (Agencia Espacial Europea) y la NASA.",
+    "paragraph2": "Las imágenes utilizadas en nuestra aplicación provienen de diferentes instrumentos a bordo del SOHO, incluyendo el Extreme ultraviolet Imaging Telescope (EIT) que captura imágenes del Sol en diferentes longitudes de onda del ultravioleta extremo, y el Michelson Doppler Imager (MDI) que proporciona imágenes de la fotosfera solar.",
+    "paragraph3": "Agradecemos al equipo de SOHO por hacer estas imágenes disponibles para la comunidad científica y educativa. Las imágenes de SOHO son cruciales para nuestro trabajo de análisis y comprensión de la actividad solar.",
+    "footer": "Hecho con ❤️ desde el semillero de astronomía y ciencia de datos de la UTB"
   }
 }
