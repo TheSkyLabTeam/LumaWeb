@@ -53,6 +53,31 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
         return {avg, max, min, stdDev}
     }, [fixedData, parameter])
 
+    const maxValue = useMemo(() => {
+        if (fixedData.length === 0) return 0;
+        return Math.max(...fixedData.map(item => item[parameter]), 0);
+    }, [fixedData, parameter]);
+
+    const yAxisWidth = useMemo(() => {
+        // Calcular el número de dígitos enteros
+        const integerDigits = Math.floor(Math.log10(maxValue > 0 ? maxValue : 1)) + 1;
+
+        // Considerar 2 decimales (por el uso de toFixed(2))
+        const decimalDigits = 2;
+
+        // Considerar el separador decimal (1 carácter)
+        const decimalSeparator = 1;
+
+        // Considerar un espacio adicional para el signo negativo (si es necesario)
+        const negativeSign = maxValue < 0 ? 1 : 0;
+
+        // Calcular el ancho total necesario
+        const totalDigits = integerDigits + decimalDigits + decimalSeparator + negativeSign;
+
+        // Ajustar el ancho basado en el número total de caracteres
+        return Math.max(30, 10 + (totalDigits * 8));
+    }, [maxValue]);
+
     const renderXAxis = () => (
         <XAxis
             dataKey="date"
@@ -70,6 +95,7 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
             type="number"
             domain={["auto", "dataMax"]}
             tickFormatter={(value) => value.toFixed(2)}
+            width={yAxisWidth}
             className="text-gray-600 dark:text-gray-300"
         />
     )
@@ -150,4 +176,3 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
         </div>
     )
 }
-
