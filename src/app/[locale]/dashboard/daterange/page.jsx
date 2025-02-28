@@ -156,8 +156,14 @@ const Page = () => {
                 </div>
                 {parameters.map((param) => (
                     <TabsContent key={param} value={param}>
-                        <RangeChart rawData={rawData} selectedTable={selectedTable} parameter={param}/>
-                        <RangeDetails parameter={param}/>
+                        <div>
+                            <div className={"w-full h-[100vh]"}>
+                                <RangeChart rawData={rawData} selectedTable={selectedTable} parameter={param}/>
+                            </div>
+                            <div>
+                                <RangeDetails parameter={param}/>
+                            </div>
+                        </div>
                     </TabsContent>
                 ))}
             </Tabs>

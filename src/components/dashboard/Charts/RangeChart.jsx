@@ -1,13 +1,30 @@
 "use client"
 
-import {useMemo} from "react"
+import { useMemo, useState, useEffect } from "react"
 import moment from "moment"
-import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine, ResponsiveContainer} from "recharts"
-import {RangeTooltip} from "./RangeTooltip"
-import {useTranslations} from "next-intl"
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine, ResponsiveContainer } from "recharts"
+import { RangeTooltip } from "./RangeTooltip"
+import { useTranslations } from "next-intl"
 
-export const RangeChart = ({rawData, selectedTable, parameter}) => {
+export const RangeChart = ({ rawData, selectedTable, parameter }) => {
     const analytics = useTranslations("AnalyticsComponent")
+    const [isMobile, setIsMobile] = useState(false)
+
+    // Hook para detectar el tamaño de pantalla
+    useEffect(() => {
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 768) // 768px es el breakpoint común para md en Tailwind
+        }
+
+        // Verificar al cargar
+        checkIfMobile()
+
+        // Verificar al cambiar el tamaño de la ventana
+        window.addEventListener('resize', checkIfMobile)
+
+        // Limpiar event listener
+        return () => window.removeEventListener('resize', checkIfMobile)
+    }, [])
 
     const determineChartColor = () => {
         switch (selectedTable) {
@@ -41,7 +58,7 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
     }, [rawData, selectedTable, parameter])
 
     const statistics = useMemo(() => {
-        if (fixedData.length === 0) return {avg: 0, max: 0, min: 0, stdDev: 0}
+        if (fixedData.length === 0) return { avg: 0, max: 0, min: 0, stdDev: 0 }
 
         const values = fixedData.map((item) => item[parameter])
         const sum = values.reduce((acc, val) => acc + val, 0)
@@ -50,33 +67,8 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
         const min = Math.min(...values)
         const stdDev = Math.sqrt(values.reduce((acc, val) => acc + Math.pow(val - avg, 2), 0) / values.length)
 
-        return {avg, max, min, stdDev}
+        return { avg, max, min, stdDev }
     }, [fixedData, parameter])
-
-    const maxValue = useMemo(() => {
-        if (fixedData.length === 0) return 0;
-        return Math.max(...fixedData.map(item => item[parameter]), 0);
-    }, [fixedData, parameter]);
-
-    const yAxisWidth = useMemo(() => {
-        // Calcular el número de dígitos enteros
-        const integerDigits = Math.floor(Math.log10(maxValue > 0 ? maxValue : 1)) + 1;
-
-        // Considerar 2 decimales (por el uso de toFixed(2))
-        const decimalDigits = 2;
-
-        // Considerar el separador decimal (1 carácter)
-        const decimalSeparator = 1;
-
-        // Considerar un espacio adicional para el signo negativo (si es necesario)
-        const negativeSign = maxValue < 0 ? 1 : 0;
-
-        // Calcular el ancho total necesario
-        const totalDigits = integerDigits + decimalDigits + decimalSeparator + negativeSign;
-
-        // Ajustar el ancho basado en el número total de caracteres
-        return Math.max(30, 10 + (totalDigits * 8));
-    }, [maxValue]);
 
     const renderXAxis = () => (
         <XAxis
@@ -94,14 +86,15 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
         <YAxis
             type="number"
             domain={["auto", "dataMax"]}
+            hide={isMobile} // Ocultar solo en móviles
             tickFormatter={(value) => value.toFixed(2)}
-            width={yAxisWidth}
             className="text-gray-600 dark:text-gray-300"
+            width={isMobile ? 0 : 45} // Ancho 0 cuando está oculto
         />
     )
 
     return (
-        <div className="w-full h-[70vh] mt-3 bg-background dark:bg-surface-dark">
+        <div className="w-full h-full mt-3 bg-background dark:bg-surface-dark">
             <div
                 className="w-full flex flex-col md:flex-row md:items-center md:justify-between border-b dark:border-outline-variant-dark">
                 <div>
@@ -140,18 +133,27 @@ export const RangeChart = ({rawData, selectedTable, parameter}) => {
                     ))}
                 </div>
                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={fixedData} className="font-archivo">
+                    <AreaChart
+                        data={fixedData}
+                        className="font-archivo"
+                        margin={{
+                            left: isMobile ? 0 : 5,
+                            right: 5,
+                            top: 10,
+                            bottom: 0
+                        }}
+                    >
                         <defs>
                             <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor={graphColor} stopOpacity={0.8}/>
-                                <stop offset="100%" stopColor={graphColor} stopOpacity={0}/>
+                                <stop offset="0%" stopColor={graphColor} stopOpacity={0.8} />
+                                <stop offset="100%" stopColor={graphColor} stopOpacity={0} />
                             </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700"/>
+                        <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700" />
                         {renderXAxis()}
                         {renderYAxis()}
                         <Tooltip
-                            content={<RangeTooltip active={false} payload={[]} label={""} chartColor={graphColor}/>}/>
+                            content={<RangeTooltip active={false} payload={[]} label={""} chartColor={graphColor} />} />
                         <ReferenceLine
                             y={statistics.avg}
                             stroke="#ba1a1a"

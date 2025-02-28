@@ -56,7 +56,7 @@ export const OverTooltip = ({ active, payload, label }) => {
         {payload.map((item, index) =>
           <div key={index}>
             <span className="font-archivo">
-              {item.name}: {item.value.toFixed(4)}
+              {(item.name).replace('_', ' ')}: {item.value.toFixed(4)}
             </span>
           </div>
         )}

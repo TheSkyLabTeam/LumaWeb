@@ -4,11 +4,11 @@ import {
     BarChart,
     Bar,
     XAxis,
-    YAxis,
     CartesianGrid,
     Tooltip,
     ResponsiveContainer,
-    Cell
+    Cell,
+    LabelList,
 } from "recharts";
 import {OverTooltip} from "./OverTooltip";
 import SunSpotCounter from "@/components/dashboard/Charts/SunSpotCounter";
@@ -39,51 +39,59 @@ export default function OverChart(props) {
             return null;
         }
 
+        let paraname = props.parameter;
+
         let data = [
             {
                 name: "EIT171",
-                entropy: Object.values(props.data[0]).slice(1)[0] || 0
+                [paraname]: Object.values(props.data[0]).slice(1)[0] || 0
             },
             {
                 name: "EIT195",
-                entropy: Object.values(props.data[0]).slice(1)[1] || 0
+                [paraname]: Object.values(props.data[0]).slice(1)[1] || 0
             },
             {
                 name: "EIT284",
-                entropy: Object.values(props.data[0]).slice(1)[2] || 0
+                [paraname]: Object.values(props.data[0]).slice(1)[2] || 0
             },
             {
                 name: "EIT304",
-                entropy: Object.values(props.data[0]).slice(1)[3] || 0
+                [paraname]: Object.values(props.data[0]).slice(1)[3] || 0
             },
             {
                 name: "HMIIGR",
-                entropy: Object.values(props.data[0]).slice(1)[4] || 0
+                [paraname]: Object.values(props.data[0]).slice(1)[4] || 0
             },
             {
                 name: "HMIMAG",
-                entropy: Object.values(props.data[0]).slice(1)[5] || 0
+                [paraname]: Object.values(props.data[0]).slice(1)[5] || 0
             }
         ];
 
         // Filtrar los datos para mostrar solo las barras con valores
-        return data.filter(item => item.entropy !== 0);
-    }, [props.data]);
-
-    const maxValue = useMemo(() => {
-        if (!processedData) return 0;
-        return Math.max(...processedData.map(item => item.entropy), 0);
-    }, [processedData]);
-
-    const yAxisWidth = useMemo(() => {
-        const digitCount = Math.floor(Math.log10(maxValue > 0 ? maxValue : 1)) + 1;
-        return Math.max(30, 10 + (digitCount * 8));
-    }, [maxValue]);
+        return data.filter(item => item.paraname !== 0);
+    }, [props.data, props.parameter]);
 
     // Renderizar el placeholder si no hay datos
     if (!processedData) {
         return <div className="w-full h-96 p-4 bg-surface animate-pulse"/>;
     }
+
+    // Función personalizada para formatear etiquetas
+    const renderCustomizedLabel = (props) => {
+        const { x, y, width, height, value } = props;
+        return (
+            <text
+                x={x + width / 2}
+                y={y - 10}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="font-archivo text-sm fill-on-surface-variant dark:fill-on-surface-dark"
+            >
+                {value.toFixed(2)}
+            </text>
+        );
+    };
 
     return (
         <div
@@ -101,21 +109,17 @@ export default function OverChart(props) {
                 <div className="flex flex-col flex-grow lg:w-2/3">
                     <div className="h-[40vh] md:h-[45vh] lg:h-[50vh]">
                         <ResponsiveContainer width="100%" height="100%" className="dark:bg-surface-container-dark">
-                            <BarChart data={processedData} className="font-archivo" margin={{ left: 5 }}>
-                                <CartesianGrid strokeDasharray="3 3"/>
+                            <BarChart data={processedData} className="font-archivo" margin={{ top: 20, left: 5, right: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" className="stroke-outline-variant dark:stroke-outline-dark"/>
                                 <XAxis dataKey="name"/>
-                                <YAxis
-                                    width={yAxisWidth}
-                                    tickMargin={5}
-                                    tickFormatter={(value) => value.toLocaleString()}
-                                />
                                 <Tooltip cursor={false}
                                          content={<OverTooltip active={false} payload={[]} label={""}/>}/>
-                                <Bar dataKey="entropy" fill="#191c1e">
+                                <Bar dataKey={props.parameter} fill="#191c1e">
                                     {processedData.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={colors[index % colors.length]}
                                               radius={[10, 10, 0, 0]}/>
                                     ))}
+                                    <LabelList dataKey={props.parameter} position="top" content={renderCustomizedLabel} />
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
