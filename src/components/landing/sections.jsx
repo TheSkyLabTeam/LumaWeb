@@ -7,13 +7,30 @@ import gsap from "gsap";
 import {TextPlugin} from "gsap/TextPlugin";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {useEffect} from "react";
-
 gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
 export default function SolarDashboard() {
     const t = useTranslations("Landing");
 
     useEffect(() => {
+
+        gsap.fromTo("#dashboardPreview", {
+            opacity: 0,
+            y: -100,
+        }, {
+            opacity: 1,
+            y: 0,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+                trigger: "#feature-section",
+                start: "top center",
+                end: "+=30%",
+                toggleActions: "play none none reset",
+                scrub: 3,
+                once: true
+            }
+        });
+
         // Animación de la línea decorativa
         gsap.to("#featuresDecorativeLine", {
             width: "100%",
@@ -92,6 +109,7 @@ export default function SolarDashboard() {
                     </div>
                     <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px]">
                         <Image
+                            id={'dashboardPreview'}
                             src="/images/landing.png"
                             alt="Dashboard Preview"
                             layout="fill"
