@@ -1,0 +1,42 @@
+export const developers = [
+  {
+    name: "Daniel D. Herrera Acevedo",
+    role: "Frontend",
+    image: "/images/developers/daniel-herrera.jpg",
+    github: "https://github.com/daniherreraa",
+    email: "acevedod@utb.edu.co",
+    color: "#3B82F6",
+  },
+  {
+    name: "Andres Garcia Teheran",
+    role: "Backend",
+    image: "/images/developers/Andres-Garcia.jpeg",
+    github: "https://github.com/AndresGarcia-15",
+    email: "teherana@utb.edu.co",
+    color: "#22C55E",
+  },
+  {
+    name: "Adrian Vizcaino",
+    role: "Backend",
+    image: "/images/developers/Adrian-Vizcaino.jpeg",
+    github: "https://github.com/VizcainoA14",
+    email: "avizcaino@utb.edu.co",
+    color: "#EAB308",
+  },
+  {
+    name: "Mauricio Donado Canedo",
+    role: "Frontend",
+    image: "/images/developers/mauricio-donado.jpeg",
+    github: "https://github.com/DonadoM",
+    email: "donadom@utb.edu.co",
+    color: "#EF4444",
+  },
+  {
+    name: "David Sierra Porta",
+    role: "Backend",
+    image: "/images/developers/david-sierra.jpeg",
+    github: "https://github.com/sierraporta",
+    email: "dporta@utb.edu.co",
+    color: "#F97316",
+  },
+];

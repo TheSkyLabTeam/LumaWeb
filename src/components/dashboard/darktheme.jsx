@@ -22,7 +22,7 @@ export default function DarkTheme() {
 
     return (
         <div
-            className="w-10 h-10 flex items-center justify-center border border-on-surface text-on-surface dark:border-on-surface-dark dark:text-on-surface-dark rounded-full cursor-pointer"
+            className="w-10 h-10 flex items-center justify-center border-2 border-primary text-primary dark:border-primary-dark dark:text-primary-dark rounded-full cursor-pointer"
             onClick={() => setDarkTheme(!darkTheme)}
             >
             {darkTheme ? <SunIcon /> : <MoonIcon />}

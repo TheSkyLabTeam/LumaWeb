@@ -1,7 +1,7 @@
 export const LoadingLanding = () => {
   return (
     <div className="w-screen h-screen flex items-start justify-start p-10 bg-background-dark text-on-background-dark">
-      <h1 className="text-2xl font-semibold" style={{ fontFamily: 'clash' }}>
+      <h1 className="font-clash text-2xl font-semibold">
         <span>Starting </span>
         <span style={{
           background: 'linear-gradient(to right, #8dcff1, #c8c2ea, #c8c2ea)',

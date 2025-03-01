@@ -1,0 +1,92 @@
+{
+  "Landing": {
+    "headerLumaDescription": "A NEW WAY TO STUDY SOLAR ACTIVITY. \n HIGH-QUALITY IMAGES \n +10 YEARS OF DATA \n INTUITIVE DASHBOARD.",
+    "headerAstroFacilities": "PRODUCT CREATED AT THE UTB ASTRONOMY AND DATA SCIENCE RESEARCH CENTER",
+    "headerWorkLink": "FEATURES",
+    "headerTeamLink": "TEAM",
+    "headerCredits": "CREDITS",
+    "headerCta": "Get Started",
+    "navbar": "Luma",
+    "featuresTitle": "Facilitating the understanding of the Sun through technology",
+    "featuresDescription": "Designed to be intuitive and accessible, this dashboard simplifies\n the study of solar activity, democratizing access to complex data\n and transforming it into comprehensible knowledge for everyone.",
+    "feature1Title": "Real-time solar image visualization",
+    "feature1Description": "With images captured by the SOHO space observatory, this\n dashboard allows you to explore images of the Sun in different\n ultraviolet layers. Observe solar phenomena from multiple\n perspectives and understand its dynamics like never before.",
+    "feature1Link": "Learn more about SOHO images",
+    "feature2Title": "Temporal Analysis Metrics",
+    "feature2Description": "Analyze the evolution of critical solar parameters over time with\n detailed metrics such as entropy, fractal dimension, and spectral\n analysis. These tools provide deep insight into solar activity and\n its impact on long-term phenomena.",
+    "feature2Link": "Go to Luma's range analysis",
+    "feature3Title": "Interactive Educational Resources",
+    "feature3Description": "Discover an educational space designed for students and\n teachers. This dashboard offers simulations, educational\n visualizations, and lessons on solar phenomena, making it easier\n to learn about topics like solar cycles, sunspots, and\n geomagnetic storms.",
+    "feature3Link": "Start the dashboard",
+    "teamTitle": "Connecting under the same sun",
+    "teamDescription": "We are the team behind Luma, passionate about sharing knowledge\n about the Sun. If you have questions, ideas, or want to share your\n observations, contact us. Together we can expand our\n understanding of the universe.",
+    "footerSubtitle": "A new way to study solar activity"
+  },
+  "OneDate": {
+    "title": "Parameters for a Date",
+    "detail": "Statistics for the date: ",
+    "titleImages": "Show images",
+    "titleDetails": "Extracted data",
+    "buttonOverview": "Overview",
+    "buttonDetails": "Details",
+    "description171": "Captures images of the Sun at 1 million degrees Celsius.",
+    "description195": "Captures images of the Sun at 1.5 million degrees Celsius.",
+    "description284": "Captures images of the Sun at x million degrees Celsius.",
+    "description304": "Reveals the Sun's upper chromosphere at about 60,000 Kelvin.",
+    "descriptionIgr": "Detects intensity variations on the Sun's surface.",
+    "descriptionMag": "Shows magnetic field activity on the Sun's surface."
+  },
+  "DateRange": {
+    "title": "Analysis for Date Ranges"
+  },
+  "ChartsParameters": {
+    "entropyTitle": "Entropy",
+    "entropyDescription": "Entropy is typically calculated from the image histogram, which represents the frequency distribution of pixel intensity levels. When an image has a uniform distribution of intensity levels, meaning all intensity levels are equally probable, entropy will be high, as there is more uncertainty or disorder in the pixel distribution. Conversely, if an image has a highly skewed or concentrated distribution of intensity levels, entropy will be low, as there is less uncertainty or disorder in the pixel distribution. When an image is very diverse, this generally implies low entropy.",
+    "mean_intensityTitle": "Mean Intensity",
+    "mean_intensityDescription": "Mean intensity in the context of image processing represents the average of all pixel intensity values in an image. Each pixel in a digital image has an associated intensity value that corresponds to its brightness or color. Mean intensity is calculated by summing all pixel intensity values in the image and dividing the result by the total number of pixels. Mean intensity is an important measure and can be useful in object detection or identifying regions of interest in an image, as it provides information about the scene's illumination level.",
+    "standard_deviationTitle": "Standard Deviation",
+    "standard_deviationDescription": "Standard deviation represents the measure of dispersion or variability of pixel intensity values in an image relative to its mean value. It is a statistical measure that indicates how much pixel intensity values vary from the mean intensity of the image. Standard deviation is an important measure in image processing as it provides information on the variability of pixel intensity levels in an image. A high standard deviation indicates that intensity values are more spread out around the mean, which may suggest the presence of fine details or textures in the image. Conversely, a low standard deviation indicates that intensity values are more concentrated near the mean, which may indicate a more uniform or smooth image.",
+    "fractal_dimensionTitle": "Fractal Dimension",
+    "fractal_dimensionDescription": "Fractal dimension is a measure that describes the irregularity or structural complexity of an object or an image. Instead of using an integer dimension, fractal dimension can be a non-integer number that reflects roughness or self-similarity at different scales. Fractal dimension is useful in image processing for characterizing texture, shape, and complexity of objects in an image. It can be used to distinguish between different types of textures or to detect fractures or cracks. Fractal dimension provides a quantitative measure of the structural complexity of an image.",
+    "skewnessTitle": "Skewness",
+    "skewnessDescription": "Skewness refers to the lack of symmetry or balance in the distribution of pixel intensities in an image. Skewness is useful in image processing to characterize the shape and intensity distribution of objects in an image. It can be used to identify elongated or tilted patterns in an image or to quantify symmetry in the dynamics and activity of the Sun. Skewness provides information about the pixel intensity distribution in an image and can be useful in various image processing applications to analyze the shape and symmetry of objects in the image.",
+    "kurtosisTitle": "Kurtosis",
+    "kurtosisDescription": "Kurtosis is a statistical measure that describes the shape of the distribution of pixel intensity values in an image. This measure can provide useful information about the distribution of intensity levels in an image and is used in various applications such as texture analysis, image segmentation, and anomaly detection. In image processing, kurtosis describes the shape of the pixel intensity distribution and provides information on the concentration and variability of intensity values in the image.",
+    "uniformityTitle": "Uniformity",
+    "uniformityDescription": "Uniformity is a measure that describes the consistency or homogeneity in the distribution of pixel intensity values in an image. It indicates how balanced the intensity distribution is across the image. Uniformity is important in image processing because it can provide information about image quality and the consistency of visual features present in it. For example, an image with a uniform intensity distribution may be easier to analyze and process in applications such as object detection or image segmentation.",
+    "relative_smoothnessTitle": "Relative Smoothness",
+    "relative_smoothnessDescription": "Relative smoothness is a measure of the variation in pixel intensity in an image.",
+    "taruma_contrastTitle": "Tamura Contrast",
+    "taruma_contrastDescription": "Tamura contrast is a measure of the difference in intensity of adjacent pixels in an image.",
+    "taruma_directionalityTitle": "Tamura Directionality",
+    "taruma_directionalityDescription": "Tamura Directionality is another feature proposed by Tamura in 1970 to describe texture in images. It refers to the tendency of texture features to align in specific directions. This feature captures the directional regularity of texture in an image. Tamura Directionality is useful in texture analysis to identify patterns or directional structures in an image, such as lines, edges, or fibers. This feature can be used in applications such as edge detection, pattern recognition, and medical image analysis.",
+    "taruma_linelikenessTitle": "Tamura Linelikeness",
+    "taruma_linelikenessDescription": "Tamura Linelikeness is another feature proposed to describe texture in images. It refers to the extent to which a texture exhibits characteristics resembling lines or linear elements. Tamura Linelikeness is useful in texture analysis to identify the presence and orientation of linear structures in an image. For example, it can be used in visual inspection applications to detect cracks in materials or to segment elongated objects in images.",
+    "taruma_coarsenessTitle": "Tamura Coarseness",
+    "taruma_coarsenessDescription": "Tamura Coarseness is another feature proposed by Tamura to describe texture in images. It refers to the amount of detail or granularity of a texture in an image. Tamura Coarseness is useful in texture analysis to quantify the fineness or granularity of textural features in an image. For example, it can be used in visual inspection applications to detect surface defects in materials or to segment textural regions in images.",
+    "taruma_regularityTitle": "Tamura Regularity",
+    "taruma_regularityDescription": "Tamura Regularity is another feature proposed by Tamura to describe texture in images. It refers to the uniformity or repetition of patterns in a texture. Tamura Regularity is useful in texture analysis to identify the presence of regular or periodic patterns in an image. For example, it can be used in pattern recognition applications to detect repetitive structures in images or to segment textural regions with regular patterns.",
+    "taruma_roughnessTitle": "Tamura Roughness",
+    "taruma_roughnessDescription": "Tamura Roughness is another feature proposed by Tamura to describe texture in images. It refers to the amount of detail or granularity of a texture in an image. Tamura Roughness is useful in texture analysis to quantify the fineness or granularity of textural features in an image. For example, it can be used in visual inspection applications to detect surface defects in materials or to segment textural regions in images."
+  },
+
+  "SunSpotComponent": {
+    "sunspotComponentTitle": "Sunspot Information",
+    "sunspotCountTitle": "Total Sunspot Count",
+    "sunspotNumberObservations": "No. of Observations",
+    "sunspotStandardDeviation": "Standard Deviation"
+  },
+  "AnalyticsComponent": {
+    "max": "Monthly Maximum",
+    "min": "Monthly Minimum",
+    "avg": "Monthly Average",
+    "stdDev": "Monthly Standard Deviation"
+  },
+  "CreditsPage": {
+    "title": "Credits",
+    "paragraph1": "LUMA uses images from the Solar and Heliospheric Observatory (SOHO) to perform its analyses and obtain solar activity parameters. SOHO is an international cooperation project between ESA (European Space Agency) and NASA.",
+    "paragraph2": "The images used in our application come from different instruments aboard SOHO, including the Extreme ultraviolet Imaging Telescope (EIT) which captures images of the Sun at different extreme ultraviolet wavelengths, and the Michelson Doppler Imager (MDI) which provides images of the solar photosphere.",
+    "paragraph3": "We thank the SOHO team for making these images available to the scientific and educational community. SOHO images are crucial for our work in analyzing and understanding solar activity.",
+    "footer": "Made with ❤️ from the astronomy and data science research group at UTB"
+  }
+}

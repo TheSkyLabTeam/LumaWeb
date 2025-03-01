@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { useGSAP } from "@gsap/react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { DatePicker } from "@/components/dashboard/datepicker";
 import { DetailsPanel } from "@/components/dashboard/detailspanel";
@@ -20,15 +19,10 @@ const Page = () => {
 
   // Defining the function to get the url of the image
   const getImage = (table, date) => {
-    if (!table || !date) return ""; // Handle cases where either table or date is null
-
-    for (let i = 0; i < table.rows.length; i++) {
-      let dateObj = table.rows[i].date.split(" ")[0];
-      if (dateObj === date) {
-        return table.rows[i].url;
-      }
-    }
-    return "";
+    if (!table || !date) return []; // Devuelve un arreglo vacío si no hay datos
+    return table.rows
+      .filter(row => row.date.split(" ")[0] === date)
+      .map(row => row.url); // Devuelve un arreglo con las URLs coincidentes
   };
 
   // Date handling functions
@@ -98,37 +92,43 @@ const Page = () => {
   );
 
   // Animation with GSAP
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl
-      .to("#titleOneDate", { text: t("title"), duration: 0.6 })
-      .to("#subtitleOneDate", { text: `Estadisticos solares para la fecha: ${fixedDate}`, duration: 0.5 })
-      .to("#oneDatePicker", {
-        x: 0,
-        opacity: 100,
-        duration: 0.5,
-        ease: "expo.out"
-      });
+  useEffect(
+    () => {
+      const tl = gsap.timeline();
+      tl
+        .to("#titleOneDate", { text: t("title"), duration: 0.6 })
+        .to("#subtitleOneDate", {
+          text: `${t("detail")} ${fixedDate}`,
+          duration: 0.5
+        })
+        .to("#oneDatePicker", {
+          x: 0,
+          opacity: 100,
+          duration: 0.5,
+          ease: "expo.out"
+        });
 
-    [
-      "eit171",
-      "eit195",
-      "eit284",
-      "eit304",
-      "eithmiigr",
-      "hmimag"
-    ].forEach((csun, index) => {
-      gsap.to(`.${csun}`, {
-        y: 0,
-        duration: 0.5 + index * 0.1,
-        ease: "back.inOut(1.7)"
+      [
+        "eit171",
+        "eit195",
+        "eit284",
+        "eit304",
+        "eithmiigr",
+        "hmimag"
+      ].forEach((csun, index) => {
+        gsap.to(`.${csun}`, {
+          y: 0,
+          duration: 0.5 + index * 0.1,
+          ease: "back.inOut(2)"
+        });
       });
-    });
-  }, [fixedDate]);
+    },
+    [fixedDate, t]
+  );
 
   // Rendering components
   return (
-    <div className="w-full h-fit flex flex-col md:p-2">
+    <div className="w-full h-fit flex flex-col md:p-2 mt-6">
       {/* Header */}
       <div
         id="nav"
@@ -137,15 +137,14 @@ const Page = () => {
         <div id="titleContainer">
           <h1
             id="titleOneDate"
-            className="text-3xl text-on-background dark:text-on-background-dark"
+            className="font-clash text-3xl text-on-background dark:text-on-background-dark"
           />
           <h2
             id="subtitleOneDate"
-            className="text-base font-normal text-on-background dark:text-on-background-dark"
-            style={{ fontFamily: "Archivo" }}
+            className="font-archivo text-base font-normal text-on-background dark:text-on-background-dark/60"
           />
         </div>
-        <div id="dateContainer" className="flex mt-2 md:mt-0">
+        <div id="dateContainer" className="flex mt-3 md:mt-0">
           <DatePicker onDateChange={handleDateChange} />
         </div>
       </div>
@@ -153,7 +152,7 @@ const Page = () => {
       {/* Sun images */}
       <div
         id="sunImagesContainer"
-        className="scrollable w-full h-fit flex gap-4 xl:gap-2 justify-between pt-4 border-t border-outline overflow-x-scroll 2xl:overflow-hidden z-20"
+        className="scrollable w-full h-fit flex gap-4 xl:gap-2 justify-between pt-6 overflow-x-auto overflow-y-hidden z-20"
       >
         <div id="eitContainer" className="flex gap-4 xl:gap-2">
           {["171", "195", "284", "304"].map(table =>
@@ -164,7 +163,7 @@ const Page = () => {
               image={
                 data && data[`data${table}`]
                   ? getImage(data[`data${table}`], fixDate(selectedDate))
-                  : ""
+                  : [] // Asegúrate de que sea un arreglo
               }
               description={t(`description${table}`)}
             />

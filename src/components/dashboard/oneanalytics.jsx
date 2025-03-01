@@ -1,87 +1,43 @@
-export default function OneAnalytics(props) {
-  let statistics = props.statistics;
-  return (
-    <div
-      id="oneDateAnalyticsContainer"
-      className="h-56 md:h-36 md:w-full md:flex-row xl:w-1/3 flex flex-col xl:flex-col xl:h-96 rounded-md p-2 gap-2"
-    >
-      {/*Month Average container */}
-      <div className="w-full h-1/2 md:h-28 lg:h-full flex flex-row gap-2">
-        <div
-          id="monthAvgContainer"
-          className="analyticCard"
-        >
-          <div
-            id="monthAverage"
-            className="w-full h-3/4 flex items-center justify-center text-2xl md:text-3xl dark:text-on-background-dark"
-            style={{ fontFamily: "Clash" }}
-          >
-            {statistics?.avg?.toFixed(2)}
-          </div>
-          <div
-            id="monthAverageLabel"
-            className="analitycLabel"
-            style={{ fontFamily: "Archivo" }}
-          >
-            Month Average
-          </div>
-        </div>
-        <div
-          id="monthStdContainer"
-          className="analyticCard"
-        >
-          <div
-            id="monthStd"
-            className="w-full h-3/4 flex items-center justify-center text-2xl md:text-3xl dark:text-on-background-dark"
-            style={{ fontFamily: "Clash" }}
-          >
-            {statistics?.stdDev?.toFixed(2)}
-          </div>
-          <div
-            id="monthAverageLabel"
-            className="analitycLabel"
-            style={{ fontFamily: "Archivo" }}
-          >
-            Month Standart deviation
-          </div>
-        </div>
-      </div>
+import {useTranslations} from "next-intl";
 
-      {/*Month Maximum and Minimum container */}
-      <div className="w-full h-1/2 md:h-28 lg:h-full flex flex-row gap-2">
-        <div id="monthMaximum" className="analyticCard" >
-          <div
-            id="monthMax"
-            className="w-full h-3/4 flex items-center justify-center text-2xl md:text-3xl dark:text-on-background-dark"
-            style={{ fontFamily: "Clash" }}
-          >
-            {statistics?.max?.toFixed(2)}
-          </div>
-          <div
-            id="monthMaxLabel"
-            className="analitycLabel"
-            style={{ fontFamily: "Archivo" }}
-          >
-            Month Maximum
-          </div>
+export default function OneAnalytics(props) {
+    const statistics = props.statistics
+    const t = useTranslations('AnalyticsComponent');
+    return (
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-2 bg-surface dark:bg-surface-container-low-dark p-2">
+            <div className="flex flex-col items-center justify-center text-center p-2">
+                <p className="text-on-surface dark:text-on-surface-dark text-base md:text-lg lg:text-xl font-clash font-semibold">
+                    {statistics.max.toFixed(2)}
+                </p>
+                <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-xs md:text-sm">
+                    {t('max')}
+                </p>
+            </div>
+            <div className="flex flex-col items-center justify-center text-center p-2">
+                <p className="text-on-surface dark:text-on-surface-dark text-base md:text-lg lg:text-xl font-clash font-semibold">
+                    {statistics.min.toFixed(2)}
+                </p>
+                <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-xs md:text-sm">
+                    {t('min')}
+                </p>
+            </div>
+            <div className="flex flex-col items-center justify-center text-center p-2">
+                <p className="text-on-surface dark:text-on-surface-dark text-base md:text-lg lg:text-xl font-clash font-semibold">
+                    {statistics.avg.toFixed(2)}
+                </p>
+                <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-xs md:text-sm">
+                    {t('avg')}
+                </p>
+            </div>
+            <div className="flex flex-col items-center justify-center text-center p-2">
+                <p className="text-on-surface dark:text-on-surface-dark text-base md:text-lg lg:text-xl font-clash font-semibold">
+                    {statistics.stdDev.toFixed(2)}
+                </p>
+                <p className="text-on-surface-variant dark:text-on-surface-variant-dark font-archivo text-xs md:text-sm">
+                    {t('stdDev')}
+                </p>
+            </div>
         </div>
-        <div className="analyticCard" >
-          <div
-            id="monthMinimum"
-            className="w-full h-3/4 flex items-center justify-center text-2xl md:text-3xl dark:text-on-background-dark"
-            style={{ fontFamily: "Clash" }}
-          >
-            {statistics?.min?.toFixed(2)}
-          </div>
-          <div
-            id="monthMinimumLabel"
-            className="analitycLabel"
-            style={{ fontFamily: "Archivo" }}
-          >
-            Month Minimum
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    )
 }
+

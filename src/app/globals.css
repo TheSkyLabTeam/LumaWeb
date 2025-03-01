@@ -7,30 +7,6 @@ html {
   overflow-x: hidden;
 }
 
-/* Custom styles */
-@font-face {
-  font-family: "clash";
-  src: url("./fonts/ClashDisplay-Regular.woff2");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "clash";
-  src: url("./fonts/ClashDisplay-Semibold.woff2");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "clash";
-  src: url("./fonts/ClashDisplay-Bold.woff2");
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: "archivo";
-  src: url("./fonts/Archivo-Regular.woff2");
-}
-
 chip {
   @apply h-8 rounded-lg flex items-center justify-center px-4 cursor-pointer;
 }
@@ -58,23 +34,9 @@ button{
   @apply bg-secondary-container dark:bg-secondary-container-dark rounded-full;
 }
 
-/*Analitycs component*/
-.analyticCard {
-  @apply w-1/2 h-full flex flex-col justify-center items-center bg-background dark:bg-background-dark border dark:border-outline-dark/50 rounded-2xl overflow-hidden;
-}
-
-/*Analityc label*/
-.analitycLabel {
-  @apply w-full h-1/4 bg-surface flex items-center justify-center text-center text-sm md:text-xs xl:text-xs dark:bg-surface-dark dark:text-on-surface-dark;
-}
-
 /* Handle */
 #dashboard::-webkit-scrollbar-thumb {
   @apply rounded-lg
-}
-
-#titleOneDate {
-  font-family: "clash", sans-serif;
 }
 
 .buttonData {
@@ -88,14 +50,4 @@ button{
 #image {
   background-position: center;
   background-size: cover;
-}
-
-/* Date range section */
-.datePickerContainer {
-  @apply flex flex-col md:flex-row items-start md:items-center gap-0 md:gap-2;
-}
-
-.dateRangePickerLabel {
-  @apply text-sm text-on-surface-variant dark:text-on-surface-variant-dark;
-  font-family: 'archivo';
 }

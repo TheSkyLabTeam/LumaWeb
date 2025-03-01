@@ -10,6 +10,10 @@ module.exports = {
     transparent: "transparent",
     current: "currentColor",
     extend: {
+      fontFamily: {
+        clash: ['var(--font-clash)'],
+        archivo: ['var(--font-archivo)']
+      },
       colors: {
         primary: {
           DEFAULT: "#166683", // rgb(22 102 131)

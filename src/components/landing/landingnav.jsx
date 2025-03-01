@@ -1,37 +1,146 @@
-import { Link } from "@/navigation";
+import { useRef } from "react";
+import { Link, useRouter, usePathname } from "@/navigation";
+import { Button } from "../ui/button";
+import gsap from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
+gsap.registerPlugin([TextPlugin, useGSAP]);
 
 export const LandingNav = () => {
+  const t = useTranslations("Landing");
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = useLocale();
+  const container = useRef();
+
+  const switchLanguage = (locale) => {
+    router.replace(pathname, { locale });
+  };
+
+  // Función para manejar el scroll suave a secciones
+  const scrollToSection = (sectionId, e) => {
+    e.preventDefault();
+
+    // Solo ejecutar en la página principal
+    if (pathname !== '/') {
+      router.push('/');
+      // Espera a que la navegación se complete antes de intentar desplazarse
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+      return;
+    }
+
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  useGSAP(() => {
+    const tl = gsap.timeline();
+
+    // Links animations
+    [...Array(3)].forEach((_, index) => {
+      gsap.to(`#navLink-${index}`, {
+        y: 0,
+        duration: 0.6 + index * 0.3,
+        ease: "back.inOut(1.7)"
+      });
+    });
+
+    tl
+        .to("#lumaBrandContainer", {
+          x: 0,
+          duration: 0.6,
+          ease: "back.inOut(1.7)"
+        })
+        .to(
+            "#getStartedContainer",
+            {
+              x: 0,
+              duration: 0.6,
+              ease: "back.inOut(1.7)"
+            },
+            "-=0.4" // Animación simultánea con un pequeño solapamiento
+        );
+  });
+
   return (
-    <nav className="flex w-full h-16 px-6 z-50 fixed top-0">
-      <div
-        id="brandContainer"
-        className="flex items-center h-full"
+      <nav
+          ref={container}
+          className="flex p-4 md:p-6 flex-row justify-between items-center"
       >
-        <svg
-          className="w-10 mt-6 h-auto"
-          width="190"
-          height="236"
-          viewBox="0 0 190 236"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <div id="lumaBrandContainer" className="flex flex-row items-center -translate-x-32">
+          <Link href={"/"}>
+            <Image
+                width={32}
+                height={32}
+                className="w-8 h-auto"
+                src="/images/LumaIcon.svg"
+                alt="Luma Icon"
+            />
+          </Link>
+        </div>
+        <div
+            id="linksContainer"
+            className="hidden md:flex flex-row font-archivo font-normal gap-8"
         >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M40.6484 127.177C40.6484 130.096 37.6266 132.013 35.0964 130.557C14.1222 118.488 -1.65548e-05 95.851 -1.65548e-05 69.9152C-1.65548e-05 31.3021 31.3021 0 69.9152 0C104.984 0 134.022 25.819 139.058 59.485C139.405 61.8042 137.553 63.818 135.208 63.818L44.6484 63.818C42.4392 63.818 40.6484 65.6088 40.6484 67.818V127.177Z"
-            fill="#dfe3e7"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M148.451 107.879C148.451 104.959 151.473 103.042 154.003 104.498C174.977 116.567 189.1 139.205 189.1 165.14C189.1 203.753 157.798 235.056 119.184 235.056C84.1158 235.056 55.0776 209.236 50.0419 175.571C49.695 173.251 51.5468 171.238 53.8918 171.238L144.451 171.238C146.66 171.238 148.451 169.447 148.451 167.238L148.451 107.879Z"
-            fill="#dfe3e7"
-          />
-          <rect x="50" y="73" width="89" height="89" rx="6" fill="#dfe3e7" />
-        </svg>
-      </div>
-      <div id="navLinksContainer" />
-    </nav>
+          {[
+            // Ahora cada link tiene un ID de sección asociado
+            [t('headerWorkLink'), "#feature-section"],
+            [t('headerTeamLink'), "#team-section"],
+            [t('headerCredits'), "/credits"], // Este mantiene la navegación normal
+          ].map(([text, href], index) =>
+              href.startsWith('#') ? (
+                  <a
+                      className="-translate-y-32"
+                      id={`navLink-${index}`}
+                      key={index}
+                      href={href}
+                      onClick={(e) => scrollToSection(href.substring(1), e)}
+                  >
+                    {text}
+                  </a>
+              ) : (
+                  <Link
+                      className="-translate-y-32"
+                      id={`navLink-${index}`}
+                      key={index}
+                      href={href}
+                  >
+                    {text}
+                  </Link>
+              )
+          )}
+        </div>
+        <div id="getStartedContainer" className="flex flex-row items-center gap-6 translate-x-52">
+          <div className="font-archivo flex gap-1 cursor-pointer">
+          <span
+              onClick={() => switchLanguage("es")}
+              className={currentLocale === "es" ? "font-extrabold" : "hover:text-gray-400"}
+          >
+            ES
+          </span>
+            <span>/</span>
+            <span
+                onClick={() => switchLanguage("en")}
+                className={currentLocale === "en" ? "font-extrabold" : "hover:text-gray-400"}
+            >
+            EN
+          </span>
+          </div>
+          <Link href={"/dashboard"}>
+            <Button className="border rounded-none bg-[#A0FFFF] hover:bg-white">
+              <p className="font-archivo font-semibold text-black">{t('headerCta')}</p>
+            </Button>
+          </Link>
+        </div>
+      </nav>
   );
 };
