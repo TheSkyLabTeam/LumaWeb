@@ -10,7 +10,7 @@ export default function DeveloperCard({ developer }) {
 
   return (
     <div className="group relative flex flex-col">
-      <div className="relative w-full aspect-square overflow-hidden rounded-lg bg-[#171C1F]">
+      <div className="relative w-full aspect-square overflow-hidden bg-[#171C1F]">
         <Image
           src={imageError ? '/placeholder-avatar.jpg' : developer.image}
           alt={developer.name}
@@ -39,11 +39,11 @@ export default function DeveloperCard({ developer }) {
         </div>
       </div>
       <div className="mt-2 space-y-0.5">
-        <h3 className="font-clash text-sm text-white font-medium line-clamp-1">
+        <h3 className="font-clash text-sm text-white font-medium line-clamp-1 uppercase">
           {developer.name}
         </h3>
         <p 
-          className="font-archivo text-xs"
+          className="font-archivo text-xs uppercase"
           style={{ color: developer.color }}
         >
           {developer.role}
