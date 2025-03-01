@@ -44,8 +44,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <header className="relative w-svw h-svh flex overflow-hidden select-none">
-      <div className="block z-10 w-full h-full mix-blend-exclusion antialiased text-[#A0FFFF]">
+    <header className="relative w-svw h-svh flex overflow-hidden select-none text-white">
+      <div className="block z-10 w-full h-full mix-blend-exclusion antialiased text-white">
         <LandingNav />
         <div className="absolute flex flex-row items-center text-[25vw] md:text-[20vw] font-clash font-semibold
              top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden h-[1em]">
