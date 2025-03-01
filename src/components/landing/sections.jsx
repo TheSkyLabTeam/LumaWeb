@@ -81,7 +81,7 @@ export default function SolarDashboard() {
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div className={'space-y-4'}>
                         <h1 id={'featuresTitle'}
-                            className="min-h-32 font-clash text-3xl sm:text-4xl lg:text-4xl text-on-background-dark font-semibold leading-tight uppercase">
+                            className="lg:min-h-32 font-clash text-3xl sm:text-4xl md:text-2xl lg:text-4xl text-on-background-dark font-semibold leading-tight uppercase">
                         </h1>
                         <div
                             id={'featuresDecorativeLine'}

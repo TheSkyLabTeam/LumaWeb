@@ -13,9 +13,9 @@ export default function CreditsPage() {
                 <source src="/videos/bgSunVideo.mp4" type="video/mp4"/>
             </video>
             <div className="max-w-3xl mx-auto px-6 relative">
-                <h1 className="text-4xl mb-8 text-cyan-300 font-clash font-semibold">{t('title')}</h1>
+                <h1 className="text-4xl mb-3 text-cyan-300 font-clash font-semibold uppercase">{t('title')}</h1>
 
-                <div className="space-y-6 text-justify font-normal font-archivo text-white">
+                <div className="space-y-6 text-justify font-normal font-archivo text-white uppercase leading-tight">
                     <p>
                         {t('paragraph1')}
                     </p>
@@ -28,7 +28,7 @@ export default function CreditsPage() {
                         {t('paragraph3')}
                     </p>
 
-                    <div className="mt-16 text-center text-sm text-cyan-300 font-archivo">
+                    <div className=" text-center text-sm text-cyan-300 font-archivo">
                         {t('footer')}
                     </div>
                 </div>
