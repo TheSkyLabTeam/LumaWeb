@@ -52,9 +52,9 @@ export const LoadingScreen = ({ onLoadComplete, children }) => {
       <div className="mb-8">
         <h1 className="text-5xl md:text-7xl font-clash font-semibold">LUMA</h1>
       </div>
-      <div className="w-64 md:w-80 h-10 bg-gray-800 overflow-hidden">
+      <div className="w-64 md:w-80 h-6 bg-gray-800 overflow-hidden">
         <div 
-          className="h-full bg-white transition-all duration-300 ease-out"
+          className="h-full bg-cyan-400 transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
