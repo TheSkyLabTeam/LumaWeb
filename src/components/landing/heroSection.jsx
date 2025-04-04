@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import "@/components/landing/landingStyles.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { LandingNav } from "./landingnav";
@@ -10,18 +10,22 @@ gsap.registerPlugin(TextPlugin);
 
 const HeroSection = () => {
   const t = useTranslations("Landing");
+  const videoRef = useRef(null);
+  const animationsInitialized = useRef(false);
 
-  useEffect(() => {
+  // Initialize animations when video is loaded
+  const initializeAnimations = () => {
+    if (animationsInitialized.current) return;
+    animationsInitialized.current = true;
+
     // Labels animations
     gsap.to("#lumaFeaturesLabel", {
-      text:
-        t('headerLumaDescription'),
+      text: t('headerLumaDescription'),
       duration: 1
     });
 
     gsap.to("#astroFacilities", {
-      text:
-        t('headerAstroFacilities'),
+      text: t('headerAstroFacilities'),
       duration: 1
     });
 
@@ -41,6 +45,29 @@ const HeroSection = () => {
         ease: "back.inOut(1.7)"
       });
     });
+  };
+
+  useEffect(() => {
+    // Add event listener to ensure video loads completely
+    const video = videoRef.current;
+    
+    if (video) {
+      // When video can play through, it means it's fully loaded
+      const handleVideoReady = () => {
+        initializeAnimations();
+      };
+      
+      video.addEventListener('canplaythrough', handleVideoReady);
+      
+      // If video is already loaded (from cache)
+      if (video.readyState >= 3) {
+        initializeAnimations();
+      }
+      
+      return () => {
+        video.removeEventListener('canplaythrough', handleVideoReady);
+      };
+    }
   }, []);
 
   return (
@@ -87,9 +114,12 @@ const HeroSection = () => {
         </div>
       </div>
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
+        playsInline
+        preload="auto"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
         <source src="/videos/bgSunVideo.mp4" type="video/mp4" />

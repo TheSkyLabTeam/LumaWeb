@@ -1,15 +1,21 @@
 "use client"
+import { useState, useEffect, useRef } from "react";
 import HeroSection from "@/components/landing/heroSection";
 import Sections from "@/components/landing/sections";
 import Footer from "@/components/footer/Footer1";
 import Teamsection from "./teamsection";
-import Lenis from 'lenis'
-import {useEffect, useRef} from "react";
+import Lenis from 'lenis';
+import { LoadingScreen } from "@/components/loading/LoadingScreen"; // Import the new component
 
 export const Landing = () => {
     const lenis = useRef(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
+    // Setup smooth scrolling with Lenis
     useEffect(() => {
+        // Only initialize scrolling when content is loaded
+        if (!isLoaded) return;
+
         // Añadir estilos para ocultar la barra de scroll
         document.documentElement.style.scrollbarWidth = 'none'; // Firefox
         document.documentElement.style.msOverflowStyle = 'none'; // IE/Edge
@@ -45,20 +51,31 @@ export const Landing = () => {
 
         // Cleanup on unmount
         return () => {
-            lenis.current.destroy();
+            if (lenis.current) {
+                lenis.current.destroy();
+            }
             document.body.style.overflow = '';
             document.documentElement.style.scrollbarWidth = '';
             document.documentElement.style.msOverflowStyle = '';
-            document.head.removeChild(style);
+            if (style.parentNode) {
+                document.head.removeChild(style);
+            }
         };
-    }, []);
+    }, [isLoaded]); // Only run when isLoaded changes
+
+    // Handle loading completion
+    const handleLoadComplete = () => {
+        setIsLoaded(true);
+    };
 
     return (
-        <main className="w-screen flex flex-col bg-[#0D0D0D]">
-            <HeroSection/>
-            <Sections id="work-section"/>
-            <Teamsection id="team-section"/>
-            <Footer/>
-        </main>
+        <LoadingScreen onLoadComplete={handleLoadComplete}>
+            <main className="w-screen flex flex-col bg-[#0D0D0D]">
+                <HeroSection/>
+                <Sections id="work-section"/>
+                <Teamsection id="team-section"/>
+                <Footer/>
+            </main>
+        </LoadingScreen>
     );
 };
