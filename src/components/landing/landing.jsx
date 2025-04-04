@@ -5,7 +5,7 @@ import Sections from "@/components/landing/sections";
 import Footer from "@/components/footer/Footer1";
 import Teamsection from "./teamsection";
 import Lenis from 'lenis';
-import { LoadingScreen } from "@/components/loading/LoadingScreen"; // Import the new component
+import { LoadingScreen } from "@/components/loading/LoadingScreen";
 
 export const Landing = () => {
     const lenis = useRef(null);
