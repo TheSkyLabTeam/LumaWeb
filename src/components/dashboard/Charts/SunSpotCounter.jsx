@@ -46,24 +46,24 @@ export default function SunSpotCounter({date}) {
     return (
         <div
             id={'sunSpotInfoContainer'}
-            className={`flex flex-col h-[40svh] md:h-[30svh] lg:h-[63vh] bg-surface-container dark:bg-surface-container-dark`}
+            className={`flex flex-col h-[40svh] md:h-[30svh] lg:h-[63vh] border divide-y`}
         >
-            <div className={`w-full h-[15%] flex p-3`}>
+            <div className={`w-full h-[10%] flex p-3`}>
                 <h2 className={`font-clash font-semibold text-lg text-on-background dark:text-on-background-dark`}>{t('sunspotComponentTitle')}</h2>
             </div>
-            <div className={`w-full h-[70%] flex flex-col justify-center items-center`}>
+            <div className={`w-full h-[45%] flex flex-col justify-center items-center`}>
                 <h3 className={`text-8xl font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_5}</h3>
                 <p className={`font-archivo text-base text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotCountTitle')}</p>
             </div>
             <div
-                className={`w-full h-fit xl:h-[15%] flex flex-row bg-surface-container dark:bg-surface-container-low-dark p-2 gap-2`}>
+                className={`w-full h-fit xl:h-[45%] flex flex-row p-2 gap-2 divide-x-2`}>
                 <div className={`w-1/2 h-full flex flex-col text-center justify-center items-center`}>
-                    <p className={`text-base font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_6}</p>
-                    <p className={`text-sm font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotStandardDeviation')}</p>
+                    <p className={`text-4xl font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_6}</p>
+                    <p className={`text-base font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotStandardDeviation')}</p>
                 </div>
                 <div className={`w-1/2 h-full flex flex-col text-center justify-center items-center`}>
-                    <p className={`text-base font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_7}</p>
-                    <p className={`text-sm font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotNumberObservations')}</p>
+                    <p className={`text-4xl font-clash font-semibold text-on-background dark:text-on-background-dark`}>{sunSpotData.column_7}</p>
+                    <p className={`text-base font-archivo text-on-surface-variant dark:text-on-surface-variant-dark`}>{t('sunspotNumberObservations')}</p>
                 </div>
             </div>
         </div>
